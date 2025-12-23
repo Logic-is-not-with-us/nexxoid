@@ -1,284 +1,527 @@
 <!doctype html>
-<html lang="en" data-theme="neon">
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nexxoid — Premium websites + growth systems</title>
-  <meta name="description" content="Premium websites + growth systems for small businesses." />
-  <meta name="theme-color" content="#05060d" />
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-  <link rel="icon" href="favicon.ico" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/style.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Premium websites, SEO and systems for small businesses. Fast builds. Clean, cinematic UI.">
+  <title>Nexoid — Premium websites & growth systems</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  
+<script>
+  window.tailwind = {
+    config: {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Space Grotesk"', 'Inter', 'ui-sans-serif', 'system-ui'],
+            body: ['Inter', 'ui-sans-serif', 'system-ui']
+          }
+        }
+      }
+    }
+  };
+</script>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="stylesheet" href="assets/nexoid.css">
+<script src="assets/nexoid.js" defer></script>
 </head>
 <body>
-  <div id="progress"></div>
-  <canvas id="fx" aria-hidden="true"></canvas>
-  <div class="noise" aria-hidden="true"></div>
-  <div id="cursorGlow" aria-hidden="true"></div>
+  <div class="noise"></div>
 
-  <div class="nav">
-    <div class="container navInner">
-      <a class="brand" href="index.html" aria-label="Nexxoid home">
-        <div class="logo" aria-hidden="true"></div>
-        <div class="brandText"><b>Nexxoid</b><small>websites + growth systems</small></div>
-      </a>
-
-      <div class="navLinks" aria-label="Primary">
-        <a href="services.html" class="">Services</a>
-        <a href="work.html" class="">Work</a>
-        <a href="pricing.html" class="">Pricing</a>
-        <a href="contact.html" class="">Contact</a>
-        <a href="privacy.html" class="">Privacy</a>
-      </div>
-
-      <div class="navRight">
-        <button class="pill" id="openPalette" type="button"><span>Command</span> <span class="kbd">Ctrl K</span></button>
-        <button class="pill" id="themeToggle" type="button"><span>Theme:</span> <span id="themeName">Neon</span></button>
-        <button class="hamburger" id="openDrawer" type="button" aria-label="Open menu"></button>
-      </div>
-    </div>
-  </div>
-
-  <div class="drawer" id="drawer" aria-hidden="true">
-    <div class="drawerBackdrop"></div>
-    <div class="drawerPanel" role="dialog" aria-modal="true" aria-label="Menu">
-      <div class="drawerTop">
-        <div class="brand">
-          <div class="logo" aria-hidden="true"></div>
-          <div class="brandText"><b>Nexxoid</b><small>websites + growth systems</small></div>
-        </div>
-        <button class="hamburger" id="closeDrawer" type="button" aria-label="Close menu"></button>
-      </div>
-
-      <div class="drawerNav">
-        <a href="services.html" data-close-drawer>Services</a>
-        <a href="work.html" data-close-drawer>Work</a>
-        <a href="pricing.html" data-close-drawer>Pricing</a>
-        <a href="contact.html" data-close-drawer>Contact</a>
-        <a href="privacy.html" data-close-drawer>Privacy</a>
-
-        <div class="hr"></div>
-        <button class="pill" id="openPaletteMobile" type="button" style="justify-content:space-between"><span>Command</span><span class="kbd">Ctrl K</span></button>
-        <button class="pill" id="themeToggleMobile" type="button" style="justify-content:space-between"><span>Theme</span><span class="kbd">Neon/Void</span></button>
-      </div>
-
-      <div style="margin-top:14px; color: rgba(240,244,255,.62); font-size: 12px; line-height:1.5">
-        Tip: Use Ctrl+K to jump. Tap a Work card to open a blueprint.
-      </div>
-    </div>
-  </div>
-
-  <div class="palette" id="palette" aria-hidden="true">
-    <div class="paletteBackdrop"></div>
-    <div class="paletteBox" role="dialog" aria-modal="true" aria-label="Command Palette">
-      <div class="paletteTop">
-        <span class="kbd">Ctrl</span><span class="kbd">K</span>
-        <input id="paletteInput" type="text" placeholder="Type to navigate… (e.g. work, pricing, contact)" autocomplete="off" />
-      </div>
-      <div class="paletteList" id="paletteList"></div>
-      <div class="paletteHint">
-        <span>↑ ↓ to select · Enter to go · Esc to close</span>
-        <span class="miniNote">Fast, static, lightweight</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal" id="modal" aria-hidden="true">
-    <div class="modalBackdrop"></div>
-    <div class="modalPanel" role="dialog" aria-modal="true">
-      <div class="modalTop">
-        <div class="modalTitle" id="modalTitle">Details</div>
-        <button class="modalClose" id="modalClose" type="button" aria-label="Close">✕</button>
-      </div>
-      <div class="modalBody" id="modalBody"></div>
-    </div>
-  </div>
-
-  <main class="topPad">
-
-<section class="hero">
-  <div class="container heroGrid">
-    <div class="card reveal">
-      <div class="cardInner">
-        <div class="badgeRow">
-          <span class="badge"><span class="dot"></span>Worldwide studio · US + EU</span>
-          <span class="badge">Built for small business</span>
-          <span class="badge">Fast implementation</span>
-        </div>
-
-        <h1>Websites that feel premium —<br/>and convert like a system.</h1>
-        <p class="lead">
-          Nexxoid is a small, senior duo: IT + growth + a full‑stack builder.
-          We ship fast, motion‑polished sites that make customers trust you in seconds —
-          then optionally add SEO, Google Business optimization, integrations and automation.
-        </p>
-
-        <div class="actions">
-          <a class="btn primary" href="contact.html">
-            <span class="btnIcon">↗</span> Book a 15‑min audit
-          </a>
-          <a class="btn" href="work.html">
-            <span class="btnIcon">◎</span> See sample work
-          </a>
-          <a class="btn ghost" href="pricing.html">
-            <span class="btnIcon">$</span> Packages
-          </a>
-        </div>
-
-        <div class="hr"></div>
-
-        <div class="tagRow">
-          <span class="tag">Speed</span>
-          <span class="tag">Polish</span>
-          <span class="tag">Clarity</span>
-          <span class="tag">SEO (optional)</span>
-          <span class="tag">Google Business (optional)</span>
-          <span class="tag">Automations (optional)</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="card sidePanel reveal">
-      <div class="cardInner">
-        <h2 style="margin:0 0 8px; font-size: 18px">Growth Simulator</h2>
-        <p style="margin:0; color: rgba(240,244,255,.66); line-height:1.6">
-          Drag sliders — see how clarity + speed + trust impact leads.
-          This is a demo model, but the direction is real.
-        </p>
-
-        <div class="hr"></div>
-
-        <div class="grid2">
-          <div class="kpi">
-            <b>Estimated monthly leads</b>
-            <small id="vLeads">—</small>
+  <header class="relative z-10">
+    <div class="wrap py-5">
+      <div class="flex items-center justify-between gap-3">
+        <a href="index.html" class="flex items-center gap-3">
+          <div class="h-10 w-10 rounded-2xl glass flex items-center justify-center">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M5 19V5h3l8 10V5h3v14h-3L8 9v10H5z" fill="currentColor"/>
+            </svg>
           </div>
-          <div class="kpi">
-            <b>Estimated value</b>
-            <small id="vRevenue">—</small>
+          <div class="leading-tight">
+            <div class="font-bold tracking-tight" style="font-family:'Space Grotesk',Inter,sans-serif;">Nexoid</div>
+            <div class="text-xs muted">Websites • SEO • Systems</div>
+          </div>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-2 text-sm">
+          <a class="btn !py-2 !px-4" href="services.html" data-kcmd="Services" data-khint="Page">Services</a>
+          <a class="btn !py-2 !px-4" href="work.html" data-kcmd="Work" data-khint="Page">Work</a>
+          <a class="btn !py-2 !px-4" href="pricing.html" data-kcmd="Pricing" data-khint="Page">Pricing</a>
+          <a class="btn !py-2 !px-4" href="contact.html" data-kcmd="Contact" data-khint="Page">Contact</a>
+          <button class="btn !py-2 !px-4" type="button" data-kbar-open>
+            Ctrl+K
+          </button>
+          <button class="btn !py-2 !px-4" type="button" data-theme-toggle>
+            <span class="opacity-80">Theme:</span> <span data-theme-label>Dark</span>
+          </button>
+        </nav>
+
+        <button class="md:hidden btn !py-2 !px-4" type="button" data-menu-open>Menu</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="hidden fixed inset-0 z-50 bg-black/70 backdrop-blur-sm items-end" data-menu>
+    <div class="w-full rounded-t-[28px] panel p-5">
+      <div class="flex items-center justify-between">
+        <div class="font-semibold" style="font-family:'Space Grotesk',Inter,sans-serif;">Nexoid Menu</div>
+        <button class="btn !py-2 !px-4" data-menu-close type="button">Close</button>
+      </div>
+      <div class="mt-4 grid gap-2">
+        <a class="btn w-full justify-between" href="services.html" data-menu-close>Services <span class="badge">→</span></a>
+        <a class="btn w-full justify-between" href="work.html" data-menu-close>Work <span class="badge">→</span></a>
+        <a class="btn w-full justify-between" href="pricing.html" data-menu-close>Pricing <span class="badge">→</span></a>
+        <a class="btn w-full justify-between" href="contact.html" data-menu-close>Contact <span class="badge">→</span></a>
+
+        <div class="divider my-2"></div>
+
+        <button class="btn w-full justify-between" type="button" data-kbar-open>
+          Command Palette <span class="badge">Ctrl+K</span>
+        </button>
+        <button class="btn w-full justify-between" type="button" data-theme-toggle>
+          Theme <span class="badge"><span data-theme-label>Dark</span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+<main class="relative z-10">
+    <section class="wrap pt-6 md:pt-10">
+  <div class="panel gridlines p-6 md:p-10">
+    <div class="absolute inset-0 pointer-events-none">
+      <canvas data-hero-canvas class="w-full h-full opacity-[0.85]"></canvas>
+    </div>
+    <div class="relative">
+      <div class="flex flex-wrap items-center gap-2 reveal">
+        <span class="tag">Worldwide • US + EU focus</span>
+        <span class="tag">Fast delivery</span>
+        <span class="tag">Performance-first</span>
+      </div>
+
+      <div class="mt-6 md:mt-8 grid md:grid-cols-12 gap-6 items-start">
+        <div class="md:col-span-7">
+          <h1 class="h1 reveal">
+            Premium websites that look expensive — and <span style="background:linear-gradient(90deg, rgba(var(--a1),1), rgba(var(--a2),1)); -webkit-background-clip:text; background-clip:text; color:transparent;">convert</span>.
+          </h1>
+          <p class="mt-4 text-[15px] md:text-[17px] muted max-w-[62ch] reveal">
+            Nexoid builds high-end, smooth, modern websites for small businesses — plus optional SEO, Google Business, automations and integrations.
+            The difference: we treat your website like a product, not a brochure.
+          </p>
+
+          <div class="mt-6 flex flex-wrap gap-2 reveal">
+            <a class="btn btn-primary" href="contact.html">Book a 15‑min audit</a>
+            <button class="btn" type="button" data-open-scope>Instant estimate</button>
+            <a class="btn" href="work.html">See sample work</a>
+            <button class="btn" type="button" data-kbar-open>Ctrl+K</button>
+          </div>
+
+          <div class="mt-7 grid sm:grid-cols-3 gap-3 reveal">
+            <div class="glass p-4">
+              <div class="text-xs muted">Delivery</div>
+              <div class="text-lg font-semibold mt-1">Days, not months</div>
+              <div class="text-xs muted mt-1">Launch MVP fast, iterate weekly.</div>
+            </div>
+            <div class="glass p-4">
+              <div class="text-xs muted">Performance</div>
+              <div class="text-lg font-semibold mt-1">&lt; 1s feel</div>
+              <div class="text-xs muted mt-1">Optimized assets & motion.</div>
+            </div>
+            <div class="glass p-4">
+              <div class="text-xs muted">Systems</div>
+              <div class="text-lg font-semibold mt-1">Integrate anything</div>
+              <div class="text-xs muted mt-1">Payments, bookings, CRMs, APIs.</div>
+            </div>
           </div>
         </div>
 
-        <div class="hr"></div>
+        <div class="md:col-span-5 reveal">
+          <div class="glass p-5 md:p-6">
+            <div class="flex items-center justify-between">
+              <div class="text-sm font-semibold" style="font-family:'Space Grotesk',Inter,sans-serif;">Launch Console</div>
+              <span class="badge">Live</span>
+            </div>
+            <div class="divider my-4"></div>
 
-        <div>
-          <label>Monthly visitors: <span id="vVisitors">1200</span></label>
-          <input id="sVisitors" type="range" min="300" max="12000" value="1200" />
-        </div>
-        <div style="margin-top:10px">
-          <label>Offer clarity: <span id="vClarity">60</span></label>
-          <input id="sClarity" type="range" min="10" max="100" value="60" />
-        </div>
-        <div style="margin-top:10px">
-          <label>Site speed score: <span id="vSpeed">75</span></label>
-          <input id="sSpeed" type="range" min="30" max="100" value="75" />
-        </div>
-        <div style="margin-top:10px">
-          <label>Trust signals: <span id="vTrust">55</span></label>
-          <input id="sTrust" type="range" min="10" max="100" value="55" />
-        </div>
+            <div class="space-y-3 text-sm">
+              <div class="flex items-center justify-between">
+                <span class="muted">Core Web Vitals</span>
+                <span class="font-semibold">Green</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="muted">Time to interactive</span>
+                <span class="font-semibold">~0.9s</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="muted">Conversion uplift</span>
+                <span class="font-semibold">+12–28%</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="muted">SEO baseline</span>
+                <span class="font-semibold">On</span>
+              </div>
+            </div>
 
-        <div style="margin-top:12px">
-          <button class="btn primary" id="btnBoost" type="button"><span class="btnIcon">+</span> Apply a “premium boost”</button>
-        </div>
+            <div class="divider my-4"></div>
 
-        <div style="margin-top:10px" class="miniNote">
-          Load time target: <b>~1s</b> · No bloated frameworks · Smooth motion
+            <div class="text-xs muted">
+              We design for attention *and* trust. Your site should feel premium the second it loads.
+            </div>
+          </div>
+
+          <div class="mt-3 grid grid-cols-2 gap-3">
+            <a href="services.html" class="glass p-4 hover:translate-y-[-1px] transition-transform">
+              <div class="text-xs muted">Explore</div>
+              <div class="font-semibold mt-1">Services</div>
+            </a>
+            <a href="pricing.html" class="glass p-4 hover:translate-y-[-1px] transition-transform">
+              <div class="text-xs muted">Check</div>
+              <div class="font-semibold mt-1">Pricing</div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="wrap mt-10 md:mt-14">
+  <div class="grid md:grid-cols-12 gap-6 items-start">
+    <div class="md:col-span-5">
+      <h2 class="h2 reveal" data-section="Why Nexoid">Not another agency template</h2>
+      <p class="muted mt-3 reveal">
+        Most “agency sites” look identical because they sell the same vague promise.
+        Nexoid sells <strong>execution</strong>: speed, clarity, and systems.
+      </p>
+      <div class="mt-5 grid gap-3 reveal">
+        <div class="glass p-4">
+          <div class="font-semibold">Product-level polish</div>
+          <div class="muted text-sm mt-1">Motion, typography, spacing and micro-interactions that feel intentional.</div>
+        </div>
+        <div class="glass p-4">
+          <div class="font-semibold">Conversion-first structure</div>
+          <div class="muted text-sm mt-1">Clear sections, proof, pricing anchors, and a path to “yes”.</div>
+        </div>
+        <div class="glass p-4">
+          <div class="font-semibold">Optional growth systems</div>
+          <div class="muted text-sm mt-1">Automations + integrations when they actually produce ROI.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="md:col-span-7 reveal">
+      <div class="panel p-6 md:p-8">
+        <div class="flex items-center justify-between">
+          <div class="text-sm font-semibold" style="font-family:'Space Grotesk',Inter,sans-serif;">What we build for</div>
+          <span class="badge">Small businesses</span>
+        </div>
+        <div class="divider my-5"></div>
+        <div class="grid sm:grid-cols-2 gap-3 text-sm">
+          <span class="tag">Restaurants • menus</span>
+<span class="tag">Dentists • services</span>
+<span class="tag">Law firms • intake</span>
+<span class="tag">Salons • bookings</span>
+<span class="tag">Clinics • scheduling</span>
+<span class="tag">Local shops • catalog</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section">
-  <div class="container split">
-    <div class="panel reveal">
-      <div class="panelInner">
-        <h2>Why Nexxoid works</h2>
-        <p>
-          You don’t need “a website”. You need a website that <b>makes a stranger trust you</b>,
-          tells them exactly what to do next, and shows Google enough structure to rank.
-        </p>
-        <div class="list">
-          <div class="item"><span class="bullet"></span><div><b>Clarity first</b><small>Offer positioning and copy structure that reads like a decision.</small></div></div>
-          <div class="item"><span class="bullet"></span><div><b>Speed + motion polish</b><small>Smooth, premium feel — without jitter or bloat.</small></div></div>
-          <div class="item"><span class="bullet"></span><div><b>Systems optional</b><small>Integrations, automation, routing, dashboards — when it makes sense.</small></div></div>
+<section class="wrap mt-10 md:mt-14" id="contact" data-section="Contact">
+  <div class="panel p-6 md:p-10">
+    <div class="grid md:grid-cols-12 gap-6">
+      <div class="md:col-span-5">
+        <h2 class="h2 reveal">Let’s build it</h2>
+        <p class="muted mt-3 reveal">Tell us what you do, where you operate, and what “better” means for your business. We'll reply with next steps.</p>
+        <div class="mt-4 flex flex-wrap gap-2 reveal">
+          <button class="btn" type="button" data-open-scope>Instant estimate</button>
+          <button class="btn" type="button" data-kbar-open>Ctrl+K</button>
+          <a class="btn" href="mailto:info@nexoid.dev">info@nexoid.dev</a>
         </div>
       </div>
+      <div class="md:col-span-7 reveal">
+        
+<form class="glass p-6 md:p-7" onsubmit="event.preventDefault(); document.getElementById('contactStatus').classList.remove('hidden'); setTimeout(()=>document.getElementById('contactStatus').classList.add('hidden'), 5000);">
+  <div class="grid md:grid-cols-2 gap-4">
+    <div>
+      <label class="text-xs muted">Name</label>
+      <input name="name" required class="mt-1 w-full rounded-2xl bg-white/5 border border-white/10 px-4 py-3 outline-none focus:border-white/20" placeholder="Your name">
     </div>
+    <div>
+      <label class="text-xs muted">Email</label>
+      <input name="email" type="email" required class="mt-1 w-full rounded-2xl bg-white/5 border border-white/10 px-4 py-3 outline-none focus:border-white/20" placeholder="you@company.com">
+    </div>
+  </div>
 
-    <div class="panel reveal">
-      <div class="panelInner">
-        <h2>What we build for</h2>
-        <p>Small businesses that benefit from clarity, search visibility, and better client flow.</p>
-        <div class="workGrid" style="margin-top:12px">
-          <div class="panel cardLink workCard" data-work="0">
-            <h3>Restaurants</h3>
-            <p>Menu, location, calls, bookings, Google presence.</p>
-            <div class="workMeta"><span>7–10 days</span><span>menu</span><span>GBP</span></div>
-          </div>
-          <div class="panel cardLink workCard" data-work="1">
-            <h3>Dentists</h3>
-            <p>Trust, service pages, reviews, scheduling.</p>
-            <div class="workMeta"><span>10–14 days</span><span>local seo</span><span>bookings</span></div>
-          </div>
-          <div class="panel cardLink workCard" data-work="2">
-            <h3>Law firms</h3>
-            <p>Authority, high-intent capture, tracking.</p>
-            <div class="workMeta"><span>14–21 days</span><span>lead routing</span><span>compliance</span></div>
-          </div>
-        </div>
-        <div style="margin-top:10px" class="miniNote">Tap a card to open a blueprint.</div>
+  <div class="mt-4">
+    <label class="text-xs muted">Message</label>
+    <textarea name="message" rows="5" required class="mt-1 w-full rounded-2xl bg-white/5 border border-white/10 px-4 py-3 outline-none focus:border-white/20" placeholder="Tell us what you need (website, SEO, Google Business, integrations, automations)..."></textarea>
+  </div>
+
+  <div class="mt-4 flex flex-wrap items-center gap-2">
+    <button class="btn btn-primary" type="submit">Send</button>
+    <button class="btn" type="button" data-open-scope>Use Scope Builder</button>
+    <div class="text-xs muted">or email <a class="underline" href="mailto:info@nexoid.dev">info@nexoid.dev</a></div>
+  </div>
+
+  <div id="contactStatus" class="hidden mt-4 text-sm">
+    <span class="badge">Preview</span>
+    <span class="muted">This is the static preview. In Laravel, the form will save the lead + email you.</span>
+  </div>
+</form>
+
       </div>
     </div>
   </div>
 </section>
 
+<section class="wrap mt-10 md:mt-14" data-section="Testimonials">
+  <div class="panel p-6 md:p-10">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+      <div>
+        <h2 class="h2 reveal">Proof (placeholders until real)</h2>
+        <p class="muted mt-3 reveal">Swap these with real testimonials the moment you have them. Don’t fake — just run 1–2 pilots and record it.</p>
+      </div>
+      <div class="reveal"><a class="btn" href="contact.html">Get your pilot build</a></div>
+    </div>
+
+    <div class="mt-8 grid md:grid-cols-3 gap-4">
+      
+<div class="glass p-5 reveal">
+  <div class="muted text-sm">“We went from ‘invisible’ to showing up in local search with clear info and fast pages. The site feels premium.”</div>
+  <div class="mt-4 flex items-center justify-between">
+    <div class="text-sm font-semibold">Alex M.</div>
+    <span class="badge">Owner • Dental clinic</span>
+  </div>
+</div>
+<div class="glass p-5 reveal">
+  <div class="muted text-sm">“Menu, pricing, and Google Business were cleaned up in days. Less calls for basic questions, more bookings.”</div>
+  <div class="mt-4 flex items-center justify-between">
+    <div class="text-sm font-semibold">Nina R.</div>
+    <span class="badge">GM • Restaurant</span>
+  </div>
+</div>
+<div class="glass p-5 reveal">
+  <div class="muted text-sm">“The scope builder was surprisingly accurate. Delivery was fast and the UI looks expensive.”</div>
+  <div class="mt-4 flex items-center justify-between">
+    <div class="text-sm font-semibold">Mark T.</div>
+    <span class="badge">Partner • Law firm</span>
+  </div>
+</div>
+
+    </div>
+  </div>
+</section>
+
+<section class="wrap mt-10 md:mt-14" data-section="FAQ">
+  <div class="panel p-6 md:p-10">
+    <h2 class="h2 reveal">FAQ</h2>
+    <div class="mt-8 grid md:grid-cols-2 gap-4">
+      
+<details class="glass p-5 reveal">
+  <summary class="cursor-pointer font-semibold">How fast can you ship?</summary>
+  <div class="muted text-sm mt-2">A small site typically ships in 7–14 days once content is ready. Premium builds and integrations take longer.</div>
+</details>
+<details class="glass p-5 reveal">
+  <summary class="cursor-pointer font-semibold">Do you handle Google Business & local SEO?</summary>
+  <div class="muted text-sm mt-2">Yes—setup/cleanup, NAP consistency, category tuning, and site structure that supports local search.</div>
+</details>
+<details class="glass p-5 reveal">
+  <summary class="cursor-pointer font-semibold">Can you integrate bookings, payments, or CRM?</summary>
+  <div class="muted text-sm mt-2">Yes. We can connect calendars, forms, Stripe, email flows, and lightweight CRM pipelines depending on your needs.</div>
+</details>
+<details class="glass p-5 reveal">
+  <summary class="cursor-pointer font-semibold">What do you need from me?</summary>
+  <div class="muted text-sm mt-2">Logo/brand (or we can polish it), services/pricing, photos, and Google Business access. We’ll guide you.</div>
+</details>
+
+    </div>
+    <div class="mt-8 flex gap-2 reveal">
+      <button class="btn" type="button" data-open-scope>Instant estimate</button>
+      <a class="btn btn-primary" href="contact.html">Contact</a>
+    </div>
+  </div>
+</section>
   </main>
 
-  <div class="footer">
-    <div class="container footerGrid">
-      <div style="max-width:520px">
-        <div class="brand">
-          <div class="logo" aria-hidden="true"></div>
-          <div class="brandText"><b>Nexxoid</b><small>Worldwide — US + EU</small></div>
+  <footer class="relative z-10 mt-20">
+    <div class="wrap pb-10">
+      <div class="panel p-6 md:p-8">
+        <div class="grid gap-6 md:grid-cols-12 items-start">
+          <div class="md:col-span-6">
+            <div class="text-lg font-semibold" style="font-family:'Space Grotesk',Inter,sans-serif;">Nexoid</div>
+            <p class="muted mt-2 max-w-[52ch]">
+              Premium websites and growth systems for small businesses worldwide.
+              Fast delivery. Clean UI. Measurable outcomes.
+            </p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <a class="btn !py-2 !px-4" href="mailto:info@nexoid.dev">info@nexoid.dev</a>
+              <a class="btn !py-2 !px-4" href="privacy.html">Privacy</a>
+            </div>
+          </div>
+          <div class="md:col-span-6 grid grid-cols-2 gap-3 md:justify-items-end text-sm">
+            <a class="btn !py-2 !px-4" href="services.html">Services</a>
+            <a class="btn !py-2 !px-4" href="pricing.html">Pricing</a>
+            <a class="btn !py-2 !px-4" href="work.html">Work</a>
+            <a class="btn !py-2 !px-4" href="contact.html">Contact</a>
+          </div>
         </div>
-        <div style="margin-top:10px; color: rgba(240,244,255,.68); line-height:1.6">
-          Fast builds. Premium feel. Clear outcomes. We design and ship conversion-first websites,
-          then optionally add SEO, Google Business optimization, integrations and automation.
+
+        <div class="divider my-6"></div>
+
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 text-xs muted">
+          <div>© 2025 Nexoid. All rights reserved.</div>
+          <div>Built on Laravel. Hosted on DigitalOcean.</div>
         </div>
-        <div style="margin-top:10px" class="miniNote">Contact: <a href="mailto:info@nexoid.dev">info@nexoid.dev</a></div>
-        <div style="margin-top:8px; color: rgba(240,244,255,.52); font-size: 12px">© 2025 Nexxoid. All rights reserved.</div>
       </div>
-      <div>
-        <div class="footLinks">
-          <a href="services.html">Services</a>
-          <a href="work.html">Work</a>
-          <a href="pricing.html">Pricing</a>
-          <a href="contact.html">Contact</a>
-          <a href="privacy.html">Privacy</a>
+    </div>
+  </footer>
+
+  <div class="kbar-backdrop" data-kbar-backdrop></div>
+  <div class="kbar" data-kbar role="dialog" aria-modal="true" aria-label="Command Palette">
+    <input data-kbar-input type="text" placeholder="Type to search… (Services, Pricing, Toggle Theme)" autocomplete="off">
+    <div data-kbar-list class="max-h-[360px] overflow-auto"></div>
+    <div class="px-4 py-3 text-xs muted border-t border-white/10">
+      ↑↓ to navigate · Enter to open · Esc to close
+    </div>
+  </div>
+
+  
+<div class="hidden fixed inset-0 z-[65] bg-black/70 backdrop-blur-sm" data-scope-modal>
+  <div class="wrap h-full flex items-center justify-center py-6">
+    <div class="panel w-full max-w-[860px] p-5 md:p-7">
+      <div class="flex items-start justify-between gap-3">
+        <div>
+          <div class="tag">Scope Builder</div>
+          <div class="mt-2 text-xl font-semibold" style="font-family:'Space Grotesk',Inter,sans-serif;">Instant estimate + scope draft</div>
+          <div class="muted text-sm mt-1">Answer 8 quick questions. We’ll estimate a range (US/EU). Generate a draft you can paste into a contract.</div>
         </div>
-        <div style="margin-top:10px" class="miniNote">Built to feel expensive. Built to load fast.</div>
+        <button class="btn !py-2 !px-4" type="button" data-close-scope>Close</button>
+      </div>
+
+      <div class="divider my-5"></div>
+
+      <div class="grid gap-4">
+        <div data-scope-step>
+          <div class="text-sm font-semibold">1) Website type</div>
+          <div class="mt-2 grid md:grid-cols-3 gap-2">
+            <label class="btn justify-start cursor-pointer"><input type="radio" name="website" value="landing" class="mr-2">Landing</label>
+            <label class="btn justify-start cursor-pointer"><input type="radio" name="website" value="standard" class="mr-2" checked>Standard</label>
+            <label class="btn justify-start cursor-pointer"><input type="radio" name="website" value="premium" class="mr-2">Premium</label>
+          </div>
+        </div>
+
+        <div data-scope-step class="hidden">
+          <div class="text-sm font-semibold">2) Pages</div>
+          <div class="mt-2 grid md:grid-cols-3 gap-2">
+            <label class="btn justify-start cursor-pointer"><input type="radio" name="pages" value="1-3" class="mr-2">1–3</label>
+            <label class="btn justify-start cursor-pointer"><input type="radio" name="pages" value="5-7" class="mr-2" checked>5–7</label>
+            <label class="btn justify-start cursor-pointer"><input type="radio" name="pages" value="8-12" class="mr-2">8–12</label>
+          </div>
+        </div>
+
+        <div data-scope-step class="hidden">
+          <div class="text-sm font-semibold">3) SEO</div>
+          <div class="mt-2 grid md:grid-cols-3 gap-2">
+            <label class="btn justify-start cursor-pointer"><input type="radio" name="seo" value="none" class="mr-2">None</label>
+            <label class="btn justify-start cursor-pointer"><input type="radio" name="seo" value="optional" class="mr-2" checked>Optional</label>
+            <label class="btn justify-start cursor-pointer"><input type="radio" name="seo" value="included" class="mr-2">Included</label>
+          </div>
+        </div>
+
+        <div data-scope-step class="hidden">
+          <div class="text-sm font-semibold">4) Google Business Profile</div>
+          <div class="mt-2 grid md:grid-cols-3 gap-2">
+            <label class="btn justify-start cursor-pointer"><input type="radio" name="gmb" value="none" class="mr-2">No</label>
+            <label class="btn justify-start cursor-pointer"><input type="radio" name="gmb" value="optional" class="mr-2" checked>Optional</label>
+            <label class="btn justify-start cursor-pointer"><input type="radio" name="gmb" value="included" class="mr-2">Included</label>
+          </div>
+        </div>
+
+        <div data-scope-step class="hidden">
+          <div class="text-sm font-semibold">5) Automations</div>
+          <div class="mt-2 grid md:grid-cols-3 gap-2">
+            <label class="btn justify-start cursor-pointer"><input type="radio" name="automations" value="none" class="mr-2" checked>None</label>
+            <label class="btn justify-start cursor-pointer"><input type="radio" name="automations" value="simple" class="mr-2">Simple</label>
+            <label class="btn justify-start cursor-pointer"><input type="radio" name="automations" value="advanced" class="mr-2">Advanced</label>
+          </div>
+        </div>
+
+        <div data-scope-step class="hidden">
+          <div class="text-sm font-semibold">6) Integrations / APIs</div>
+          <div class="mt-2 grid md:grid-cols-3 gap-2">
+            <label class="btn justify-start cursor-pointer"><input type="radio" name="integrations" value="none" class="mr-2" checked>None</label>
+            <label class="btn justify-start cursor-pointer"><input type="radio" name="integrations" value="few" class="mr-2">1–2</label>
+            <label class="btn justify-start cursor-pointer"><input type="radio" name="integrations" value="many" class="mr-2">3+</label>
+          </div>
+        </div>
+
+        <div data-scope-step class="hidden">
+          <div class="text-sm font-semibold">7) Maintenance</div>
+          <div class="mt-2 grid md:grid-cols-3 gap-2">
+            <label class="btn justify-start cursor-pointer"><input type="radio" name="maintenance" value="none" class="mr-2">No</label>
+            <label class="btn justify-start cursor-pointer"><input type="radio" name="maintenance" value="optional" class="mr-2">Optional</label>
+            <label class="btn justify-start cursor-pointer"><input type="radio" name="maintenance" value="recommended" class="mr-2" checked>Recommended</label>
+          </div>
+        </div>
+
+        <div data-scope-step class="hidden">
+          <div class="text-sm font-semibold">8) Timeline</div>
+          <div class="mt-2 grid md:grid-cols-3 gap-2">
+            <label class="btn justify-start cursor-pointer"><input type="radio" name="timeline" value="2-3 weeks" class="mr-2">2–3 weeks</label>
+            <label class="btn justify-start cursor-pointer"><input type="radio" name="timeline" value="4-6 weeks" class="mr-2" checked>4–6 weeks</label>
+            <label class="btn justify-start cursor-pointer"><input type="radio" name="timeline" value="8-12 weeks" class="mr-2">8–12 weeks</label>
+          </div>
+        </div>
+
+        <div data-scope-step class="hidden">
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="glass p-4">
+              <div class="text-sm font-semibold">Estimate</div>
+              <div class="mt-1 text-2xl font-bold" data-scope-output>$—</div>
+              <div class="muted text-xs mt-1">Range depends on content readiness & integrations.</div>
+              <div class="mt-3 flex flex-wrap gap-2">
+                <button class="btn !py-2 !px-4" type="button" data-scope-copy>Copy scope</button>
+                <button class="btn !py-2 !px-4" type="button" data-scope-download>Download</button>
+                <button class="btn btn-primary !py-2 !px-4" type="button" data-scope-to-contact>Send with inquiry</button>
+              </div>
+            </div>
+            <div class="glass p-4">
+              <div class="text-sm font-semibold">Scope draft</div>
+              <textarea class="mt-2 w-full rounded-2xl bg-white/5 border border-white/10 px-4 py-3 outline-none focus:border-white/20 text-xs" rows="10" data-scope-draft></textarea>
+              <input type="hidden" data-scope-hidden>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-5 flex items-center justify-between">
+        <button class="btn !py-2 !px-4" type="button" data-scope-back>Back</button>
+        <button class="btn btn-primary !py-2 !px-4" type="button" data-scope-next>Next</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  <!-- Cookie banner -->
+  <div class="fixed bottom-4 left-1/2 -translate-x-1/2 z-[70] hidden" data-cookie>
+    <div class="glass px-4 py-3 text-xs md:text-sm max-w-[720px] flex flex-col md:flex-row md:items-center gap-3">
+      <div class="muted">We use minimal cookies/local storage for theme and UX. No tracking by default. <a class="underline" href="privacy.html">Privacy</a>.</div>
+      <div class="flex gap-2 md:ml-auto">
+        <button class="btn !py-2 !px-4" type="button" data-cookie-decline>Decline</button>
+        <button class="btn btn-primary !py-2 !px-4" type="button" data-cookie-accept>Accept</button>
       </div>
     </div>
   </div>
 
-  <div class="cookie" id="cookie">
-    <div class="cookieInner">
-      <div class="cookieCard">
-        <p><b>Cookies & privacy</b><br/>We store only your theme preference and cookie choice. If analytics are added later, we’ll update this notice.</p>
-        <div class="cookieBtns">
-          <button class="btn primary" id="cookieAccept" type="button">Accept all (future)</button>
-          <button class="btn" id="cookieEssential" type="button">Essential only</button>
-          <button class="btn ghost" id="cookieManage" type="button">Manage</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script src="assets/app.js" defer></script>
 </body>
 </html>
