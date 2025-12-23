@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Services — Nexxoid</title>
+  <meta name="description" content="Services: premium websites, local SEO + Google Business optimization, integrations, automation, and maintenance. Built fast, built clean." />
+  <meta name="theme-color" content="#05060a" />
+  <meta property="og:title" content="Services — Nexxoid" />
+  <meta property="og:description" content="Services: premium websites, local SEO + Google Business optimization, integrations, automation, and maintenance. Built fast, built clean." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Nexxoid" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <!-- Optional premium fonts; remove for zero external calls -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body{font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial}
+    h1,h2,h3,b{font-family: Space Grotesk, Inter, ui-sans-serif, system-ui}
+  </style>
+  <link rel="canonical" href="https://nexxoid.com/services.html" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Nexxoid", "url": "https://nexxoid.com/", "contactPoint": [{"@type": "ContactPoint", "contactType": "sales", "email": "info@nexoid.dev", "availableLanguage": ["en"]}], "areaServed": ["US", "EU"]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Nexxoid", "url": "https://nexxoid.com/", "inLanguage": "en"}</script>
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+  <canvas id="fx"></canvas>
+  <div class="grain"></div>
+  <div class="cursorGlow" id="cursorGlow"></div>
+
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawerPanel" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="drawerTop">
+        <a class="brand" href="index.html" aria-label="Nexxoid home">
+          <div class="logo" aria-hidden="true"></div>
+          <div><b>Nexxoid</b><small>websites + growth systems</small></div>
+        </a>
+        <button class="hamburger" id="closeDrawer" aria-label="Close menu">✕</button>
+      </div>
+      <div class="drawerNav">
+        <a href="services.html" data-close-drawer>Services</a>
+        <a href="work.html" data-close-drawer>Work</a>
+        <a href="pricing.html" data-close-drawer>Pricing</a>
+        <a href="contact.html" data-close-drawer>Contact</a>
+        <a href="privacy.html" data-close-drawer>Privacy</a>
+      </div>
+      <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
+        <button class="pill" id="openPaletteMobile" style="flex:1"><span>Command</span> <span class="kbd">Ctrl K</span></button>
+        <button class="pill" id="themeToggleMobile" style="flex:1"><span>Theme</span> <span class="kbd">Neon/Void</span></button>
+      </div>
+      <div style="margin-top:14px; color: rgba(234,240,255,.6); font-size: 12px; line-height:1.5">
+        Tip: Use Ctrl+K to jump around quickly. Tap Work cards to open the blueprint.
+      </div>
+    </div>
+  </div>
+
+  <div class="palette" id="palette" aria-hidden="true">
+    <div class="paletteBox" role="dialog" aria-modal="true" aria-label="Command Palette">
+      <div class="paletteTop">
+        <span class="kbd">Ctrl</span><span class="kbd">K</span>
+        <input id="paletteInput" type="text" placeholder="Type to navigate… (e.g. work, pricing, contact)" autocomplete="off" />
+      </div>
+      <div class="paletteList" id="paletteList"></div>
+      <div class="paletteHint">
+        <span>↑ ↓ to select · Enter to go · Esc to close</span>
+        <span>Try: “audit”, “scope”, “privacy”, “pricing”</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modalBox" role="dialog" aria-modal="true" aria-label="Details">
+      <div class="modalTop">
+        <b id="modalTitle">Details</b>
+        <button class="x" id="modalClose" aria-label="Close">✕</button>
+      </div>
+      <div class="modalBody" id="modalBody"></div>
+    </div>
+  </div>
+
+  <div class="cookie" id="cookie" aria-hidden="true">
+    <div class="cookieBox" role="dialog" aria-modal="true" aria-label="Cookie banner">
+      <div class="cookieTop">
+        <b>Cookies & privacy</b>
+        <button class="x" onclick="hideCookie()" aria-label="Close">✕</button>
+      </div>
+      <div class="cookieBody">
+        <p style="margin:0">This site is static and lightweight. We store your theme preference and cookie choice. If analytics are added later, we’ll update this notice.</p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px">
+          <button class="btn btnPrimary magnetic" id="cookieAccept">Accept all (future)</button>
+          <button class="btn btnGhost magnetic" id="cookieEssential">Essential only</button>
+          <button class="btn btnGhost magnetic" id="cookieManage">Manage</button>
+        </div>
+        <div class="smallNote">See details in <a href="privacy.html" style="text-decoration:underline">Privacy Policy</a>.</div>
+      </div>
+    </div>
+  </div>
+
+  <header class="nav">
+    <div class="wrap">
+      <div class="navInner">
+        <a class="brand" href="index.html" aria-label="Nexxoid home">
+          <div class="logo" aria-hidden="true"></div>
+          <div><b>Nexxoid</b><small>websites + growth systems</small></div>
+        </a>
+
+        <nav class="menu" aria-label="Primary">
+          <a href="services.html" class="active">Services</a>
+          <a href="work.html">Work</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="contact.html">Contact</a>
+          <a href="privacy.html">Privacy</a>
+        </nav>
+
+        <div class="right">
+          <button class="pill" id="openPalette" title="Open command palette (Ctrl+K)"><span>Command</span><span class="kbd">Ctrl K</span></button>
+          <button class="pill" id="themeToggle" title="Toggle theme"><span>Theme:</span><span id="themeName">Neon</span></button>
+          <button class="hamburger" id="openDrawer" aria-label="Open menu">☰</button>
+        </div>
+      </div>
+    </div>
+  </header>
+<script>
+window.NEXXOID_COMMANDS = [{"id": "audit", "title": "Book a 15\u2011min audit", "hint": "Contact page", "run": "(()=>{location.href='contact.html#book';})"}, {"id": "process", "title": "Jump to process", "hint": "How we work", "run": "(()=>{location.hash='#process'; document.getElementById('process')?.scrollIntoView({behavior:'smooth'});})"}, {"id": "services", "title": "Go to Services", "hint": "What we offer", "run": "(()=>{location.href='services.html';})"}, {"id": "work", "title": "Go to Work", "hint": "Sample case studies", "run": "(()=>{location.href='work.html';})"}, {"id": "pricing", "title": "Go to Pricing", "hint": "Packages + add-ons", "run": "(()=>{location.href='pricing.html';})"}, {"id": "contact", "title": "Go to Contact", "hint": "Send inquiry / scope draft", "run": "(()=>{location.href='contact.html';})"}, {"id": "privacy", "title": "Go to Privacy", "hint": "Privacy + cookies", "run": "(()=>{location.href='privacy.html';})"}, {"id": "theme", "title": "Toggle theme", "hint": "Neon \u2194 Void", "run": "(()=>{document.getElementById('themeToggle')?.click();})"}].map(c=>({...c, run: eval(c.run)}));
+</script>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="tag reveal"><span class="tagDot" aria-hidden="true"></span><span>Services · Built for speed · Built for small business reality</span></div>
+      <h1 class="reveal" style="transition-delay:.06s">What we deliver (and what we avoid).</h1>
+      <p class="sub reveal" style="transition-delay:.12s">Most “agency websites” are heavy and vague. Ours are fast, clear, and conversion‑first — with optional growth layers when you actually need them.</p>
+      <div class="ctaRow reveal" style="transition-delay:.18s">
+        <a class="btn btnPrimary magnetic" href="contact.html#book">Book a 15‑min audit</a>
+        <a class="btn btnGhost magnetic" href="#process">See process</a>
+        <a class="btn btnGhost magnetic" href="pricing.html">See packages</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="kicker reveal">Core</div>
+      <h2 class="reveal" style="transition-delay:.06s">Websites</h2>
+      <p class="lead reveal" style="transition-delay:.12s">Landing pages and small business sites that look expensive and load fast — with the message structured to convert.</p>
+      <div class="cards">
+        <div class="card reveal" data-tilt><div class="cardGlow"></div><div class="badge"><span class="mini">⚡</span><span>Landing page</span></div><h3>1-page conversion funnel</h3><p>Perfect for clinics, services, and local businesses that need results fast.</p></div>
+        <div class="card reveal" data-tilt style="transition-delay:.06s"><div class="cardGlow"></div><div class="badge"><span class="mini">▦</span><span>Small site</span></div><h3>3–6 pages (clean SEO structure)</h3><p>Services, about, contact, FAQs, galleries — plus a clear action path.</p></div>
+        <div class="card reveal" data-tilt style="transition-delay:.12s"><div class="cardGlow"></div><div class="badge"><span class="mini">✦</span><span>Polish</span></div><h3>Motion + micro‑interactions</h3><p>Subtle and premium: hover physics, depth, smooth transitions, crisp typography.</p></div>
+      </div>
+
+      <div class="heroCard reveal" style="margin-top:16px; transition-delay:.14s">
+        <div class="miniBar"><div class="miniLeft"><div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div><span>nexxoid://principles</span></div><div class="miniRight"><span class="chip">Lightweight</span><span class="chip">No bloat</span><span class="chip">Mobile-first</span></div></div>
+        <div class="heroViz">
+          <div class="terminal">
+            <div class="termLine"><em>Non‑negotiables</em></div>
+            <div class="termLine">→ fast load (Core Web Vitals)</div>
+            <div class="termLine">→ clear offer + proof + CTA</div>
+            <div class="termLine">→ clean HTML structure for SEO</div>
+            <div class="termLine">→ accessible interactions</div>
+            <div class="termLine">→ honest scoping</div>
+          </div>
+          <div class="terminal">
+            <div class="termLine"><em>What we avoid</em></div>
+            <div class="termLine">→ bloated page builders</div>
+            <div class="termLine">→ heavy animations that jitter</div>
+            <div class="termLine">→ vague copy that says nothing</div>
+            <div class="termLine">→ “features” without outcomes</div>
+          </div>
+          <div class="vizBottom"><a class="pillMini magnetic" href="work.html">See samples →</a><a class="pillMini magnetic" href="contact.html#scope">Generate scope →</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="wrap">
+      <div class="kicker reveal">Process</div>
+      <h2 class="reveal" style="transition-delay:.06s">Fast, structured, calm.</h2>
+      <p class="lead reveal" style="transition-delay:.12s">This is intentionally boring. It’s how you ship without drama.</p>
+      <div class="cards">
+        <div class="card reveal" data-tilt><div class="cardGlow"></div><div class="badge"><span class="mini">1</span><span>Audit</span></div><h3>Signal extraction</h3><p>We map the offer, objections, and the one action we want the visitor to take.</p></div>
+        <div class="card reveal" data-tilt style="transition-delay:.06s"><div class="cardGlow"></div><div class="badge"><span class="mini">2</span><span>Design</span></div><h3>Clarity + trust</h3><p>Structure: hero, offers, proof stack, FAQ, CTA. Then add premium motion.</p></div>
+        <div class="card reveal" data-tilt style="transition-delay:.12s"><div class="cardGlow"></div><div class="badge"><span class="mini">3</span><span>Build</span></div><h3>Performance pass</h3><p>Ship fast HTML/CSS/JS, compress assets, keep interactions smooth.</p></div>
+        <div class="card reveal" data-tilt><div class="cardGlow"></div><div class="badge"><span class="mini">4</span><span>Launch</span></div><h3>SEO baseline</h3><p>Metadata, structure, schema, indexability. GBP checklist optional.</p></div>
+        <div class="card reveal" data-tilt style="transition-delay:.06s"><div class="cardGlow"></div><div class="badge"><span class="mini">5</span><span>Iterate</span></div><h3>Improve conversion</h3><p>Adjust copy, proof, CTA based on traffic. Add integrations if needed.</p></div>
+        <div class="card reveal" data-tilt style="transition-delay:.12s"><div class="cardGlow"></div><div class="badge"><span class="mini">6</span><span>Maintain</span></div><h3>Optional monthly care</h3><p>Keep it fast, secure, and updated. Small improvements compound.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="kicker reveal">Add‑ons</div>
+      <h2 class="reveal" style="transition-delay:.06s">When you want “all the jazz”.</h2>
+      <p class="lead reveal" style="transition-delay:.12s">Optional modules. We scope them honestly because tools differ.</p>
+      <div class="cards">
+        <div class="card reveal" data-tilt><div class="cardGlow"></div><div class="badge"><span class="mini">◎</span><span>Google Business</span></div><h3>Maps visibility pack</h3><p>Profile cleanup + services + review plan checklist.</p></div>
+        <div class="card reveal" data-tilt style="transition-delay:.06s"><div class="cardGlow"></div><div class="badge"><span class="mini">⛭</span><span>Automations</span></div><h3>Forms → CRM → follow‑up</h3><p>Route leads to email/WhatsApp/CRM. Add reminders. Reduce lost leads.</p></div>
+        <div class="card reveal" data-tilt style="transition-delay:.12s"><div class="cardGlow"></div><div class="badge"><span class="mini">⇄</span><span>Integrations</span></div><h3>APIs + third‑party tools</h3><p>Payments, scheduling, booking, menus, catalogs — cleanly integrated.</p></div>
+      </div>
+      <div class="ctaRow reveal" style="margin-top:18px; transition-delay:.14s">
+        <a class="btn btnPrimary magnetic" href="contact.html#scope">Generate a scope draft</a>
+        <a class="btn btnGhost magnetic" href="pricing.html#addons">See add‑on pricing</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footGrid">
+        <div>
+          <div class="brand" style="gap:12px">
+            <div class="logo" aria-hidden="true"></div>
+            <div><b>Nexxoid</b><small>Worldwide — US + EU</small></div>
+          </div>
+          <div class="message">Fast builds. Premium feel. Clear outcomes.</div>
+          <div style="margin-top:10px; color: var(--muted); font-size: 13px; line-height: 1.6; max-width: 70ch">
+            Small, senior team — built for speed. We design and ship conversion-first websites, then optionally add SEO, Google Business optimization, integrations and automation.
+          </div>
+          <div style="margin-top:10px; color: var(--muted2); font-size: 12px">
+            Contact: <a href="mailto:info@nexoid.dev" style="text-decoration:underline">info@nexoid.dev</a>
+          </div>
+        </div>
+        <div class="footLinks">
+          <a href="services.html">Services</a>
+          <a href="work.html">Work</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="contact.html">Contact</a>
+          <a href="privacy.html">Privacy</a>
+        </div>
+      </div>
+      <div style="margin-top:18px; color: var(--muted2); font-size: 12px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap">
+        <span>© 2025 Nexxoid. All rights reserved.</span>
+        <span>Built to feel expensive. Built to load fast.</span>
+      </div>
+    </div>
+  </footer>
+  <script>window.NEXXOID_EMAIL = "info@nexoid.dev";</script>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>

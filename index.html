@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nexxoid — Premium websites + growth systems</title>
+  <meta name="description" content="Nexxoid builds fast, cinematic websites for small businesses — with optional SEO, Google Business optimization, integrations and automation." />
+  <meta name="theme-color" content="#05060a" />
+  <meta property="og:title" content="Nexxoid — Premium websites + growth systems" />
+  <meta property="og:description" content="Nexxoid builds fast, cinematic websites for small businesses — with optional SEO, Google Business optimization, integrations and automation." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Nexxoid" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <!-- Optional premium fonts; remove for zero external calls -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body{font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial}
+    h1,h2,h3,b{font-family: Space Grotesk, Inter, ui-sans-serif, system-ui}
+  </style>
+  <link rel="canonical" href="https://nexxoid.com/index.html" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Nexxoid", "url": "https://nexxoid.com/", "contactPoint": [{"@type": "ContactPoint", "contactType": "sales", "email": "info@nexoid.dev", "availableLanguage": ["en"]}], "areaServed": ["US", "EU"]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Nexxoid", "url": "https://nexxoid.com/", "inLanguage": "en"}</script>
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+  <canvas id="fx"></canvas>
+  <div class="grain"></div>
+  <div class="cursorGlow" id="cursorGlow"></div>
+
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawerPanel" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="drawerTop">
+        <a class="brand" href="index.html" aria-label="Nexxoid home">
+          <div class="logo" aria-hidden="true"></div>
+          <div><b>Nexxoid</b><small>websites + growth systems</small></div>
+        </a>
+        <button class="hamburger" id="closeDrawer" aria-label="Close menu">✕</button>
+      </div>
+      <div class="drawerNav">
+        <a href="services.html" data-close-drawer>Services</a>
+        <a href="work.html" data-close-drawer>Work</a>
+        <a href="pricing.html" data-close-drawer>Pricing</a>
+        <a href="contact.html" data-close-drawer>Contact</a>
+        <a href="privacy.html" data-close-drawer>Privacy</a>
+      </div>
+      <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
+        <button class="pill" id="openPaletteMobile" style="flex:1"><span>Command</span> <span class="kbd">Ctrl K</span></button>
+        <button class="pill" id="themeToggleMobile" style="flex:1"><span>Theme</span> <span class="kbd">Neon/Void</span></button>
+      </div>
+      <div style="margin-top:14px; color: rgba(234,240,255,.6); font-size: 12px; line-height:1.5">
+        Tip: Use Ctrl+K to jump around quickly. Tap Work cards to open the blueprint.
+      </div>
+    </div>
+  </div>
+
+  <div class="palette" id="palette" aria-hidden="true">
+    <div class="paletteBox" role="dialog" aria-modal="true" aria-label="Command Palette">
+      <div class="paletteTop">
+        <span class="kbd">Ctrl</span><span class="kbd">K</span>
+        <input id="paletteInput" type="text" placeholder="Type to navigate… (e.g. work, pricing, contact)" autocomplete="off" />
+      </div>
+      <div class="paletteList" id="paletteList"></div>
+      <div class="paletteHint">
+        <span>↑ ↓ to select · Enter to go · Esc to close</span>
+        <span>Try: “audit”, “scope”, “privacy”, “pricing”</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modalBox" role="dialog" aria-modal="true" aria-label="Details">
+      <div class="modalTop">
+        <b id="modalTitle">Details</b>
+        <button class="x" id="modalClose" aria-label="Close">✕</button>
+      </div>
+      <div class="modalBody" id="modalBody"></div>
+    </div>
+  </div>
+
+  <div class="cookie" id="cookie" aria-hidden="true">
+    <div class="cookieBox" role="dialog" aria-modal="true" aria-label="Cookie banner">
+      <div class="cookieTop">
+        <b>Cookies & privacy</b>
+        <button class="x" onclick="hideCookie()" aria-label="Close">✕</button>
+      </div>
+      <div class="cookieBody">
+        <p style="margin:0">This site is static and lightweight. We store your theme preference and cookie choice. If analytics are added later, we’ll update this notice.</p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px">
+          <button class="btn btnPrimary magnetic" id="cookieAccept">Accept all (future)</button>
+          <button class="btn btnGhost magnetic" id="cookieEssential">Essential only</button>
+          <button class="btn btnGhost magnetic" id="cookieManage">Manage</button>
+        </div>
+        <div class="smallNote">See details in <a href="privacy.html" style="text-decoration:underline">Privacy Policy</a>.</div>
+      </div>
+    </div>
+  </div>
+
+  <header class="nav">
+    <div class="wrap">
+      <div class="navInner">
+        <a class="brand" href="index.html" aria-label="Nexxoid home">
+          <div class="logo" aria-hidden="true"></div>
+          <div><b>Nexxoid</b><small>websites + growth systems</small></div>
+        </a>
+
+        <nav class="menu" aria-label="Primary">
+          <a href="services.html">Services</a>
+          <a href="work.html">Work</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="contact.html">Contact</a>
+          <a href="privacy.html">Privacy</a>
+        </nav>
+
+        <div class="right">
+          <button class="pill" id="openPalette" title="Open command palette (Ctrl+K)"><span>Command</span><span class="kbd">Ctrl K</span></button>
+          <button class="pill" id="themeToggle" title="Toggle theme"><span>Theme:</span><span id="themeName">Neon</span></button>
+          <button class="hamburger" id="openDrawer" aria-label="Open menu">☰</button>
+        </div>
+      </div>
+    </div>
+  </header>
+<script>
+window.NEXXOID_COMMANDS = [{"id": "audit", "title": "Book a 15\u2011min audit", "hint": "Contact page", "run": "(()=>{location.href='contact.html#book';})"}, {"id": "services", "title": "Go to Services", "hint": "What we offer", "run": "(()=>{location.href='services.html';})"}, {"id": "work", "title": "Go to Work", "hint": "Sample case studies", "run": "(()=>{location.href='work.html';})"}, {"id": "pricing", "title": "Go to Pricing", "hint": "Packages + add-ons", "run": "(()=>{location.href='pricing.html';})"}, {"id": "contact", "title": "Go to Contact", "hint": "Send inquiry / scope draft", "run": "(()=>{location.href='contact.html';})"}, {"id": "privacy", "title": "Go to Privacy", "hint": "Privacy + cookies", "run": "(()=>{location.href='privacy.html';})"}, {"id": "theme", "title": "Toggle theme", "hint": "Neon \u2194 Void", "run": "(()=>{document.getElementById('themeToggle')?.click();})"}].map(c=>({...c, run: eval(c.run)}));
+</script>
+<script>
+window.NEXXOID_WORK = [{"title": "GlowDent Clinic \u2014 Local SEO + appointment UX", "html": "\n          <p><b>Goal:</b> turn local search traffic into booked appointments.</p>\n          <div class=\"cols\">\n            <div class=\"codeblock\">WHAT WE BUILT\n- One-page funnel (services \u2192 proof \u2192 CTA)\n- Map pack / GBP checklist\n- Form \u2192 email routing\n- Performance pass (fast images, clean JS)</div>\n            <div class=\"codeblock\">MECHANICS\n- Clear offer blocks per treatment\n- \u201cProof stack\u201d section\n- Call/Book CTAs above the fold\n- Schema markup for local business</div>\n          </div>\n          <hr class=\"sep\"/>\n          <p style=\"margin:0\"><small>Note: This is a <b>sample case study</b>. Replace with real client data later.</small></p>\n        "}, {"title": "Vanta Auto Detail \u2014 Luxury motion + WhatsApp funnel", "html": "\n          <p><b>Goal:</b> increase quote requests without adding staff workload.</p>\n          <div class=\"cols\">\n            <div class=\"codeblock\">WHAT WE BUILT\n- Motion-first landing\n- Package selector\n- WhatsApp handoff with prefilled message\n- Follow-up checklist</div>\n            <div class=\"codeblock\">WHY IT WORKS\n- Users pick a package in < 30 seconds\n- WhatsApp reduces friction\n- Visual proof sells premium service</div>\n          </div>\n          <hr class=\"sep\"/>\n          <p style=\"margin:0\"><small>Sample case study.</small></p>\n        "}, {"title": "Midnight Bakery \u2014 Click-to-order + pickup scheduling", "html": "\n          <p><b>Goal:</b> sell daily specials and simplify pickups.</p>\n          <div class=\"cols\">\n            <div class=\"codeblock\">WHAT WE BUILT\n- Product grid (lite ecom)\n- Pickup time selection\n- Payment-ready layout\n- Fast mobile UX</div>\n            <div class=\"codeblock\">OPTIONAL NEXT\n- Integrate Stripe checkout\n- Connect to POS or Google Sheets\n- Add seasonal pages for SEO</div>\n          </div>\n          <hr class=\"sep\"/>\n          <p style=\"margin:0\"><small>Sample case study.</small></p>\n        "}, {"title": "NorthStar Legal \u2014 Authority design + lead qualification", "html": "\n          <p><b>Goal:</b> filter tire-kickers and attract higher-value consultations.</p>\n          <div class=\"cols\">\n            <div class=\"codeblock\">WHAT WE BUILT\n- Authority layout\n- Qualification form\n- Practice-area structure\n- SEO baseline</div>\n            <div class=\"codeblock\">MECHANICS\n- Clear \u201cwho we help\u201d section\n- Case types list\n- Consult CTA + qualification\n- Fast follow-up sequence</div>\n          </div>\n          <hr class=\"sep\"/>\n          <p style=\"margin:0\"><small>Sample case study.</small></p>\n        "}];
+</script>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="gridHero">
+        <div>
+          <div class="tag reveal"><span class="tagDot" aria-hidden="true"></span>
+            <span>Worldwide studio · US + EU · Built for <span id="heroType"></span></span>
+          </div>
+          <h1 class="reveal" style="transition-delay:.06s">Websites that feel <span class="gradientText">premium</span> —<br/>and convert like a <span class="gradientText">system</span>.</h1>
+          <p class="sub reveal" style="transition-delay:.12s">
+            Nexxoid is a small, senior duo: IT + growth + a full‑stack builder. We ship fast, motion‑polished sites that make customers trust you in seconds — then take action.
+          </p>
+          <div class="ctaRow reveal" style="transition-delay:.18s">
+            <a class="btn btnPrimary magnetic" href="contact.html#book">Book a 15‑min audit</a>
+            <a class="btn btnGhost magnetic" href="work.html">See sample work</a>
+            <a class="btn btnGhost magnetic" href="pricing.html">Packages</a>
+          </div>
+          <div class="reveal" style="margin-top: 20px; transition-delay:.24s">
+            <div class="badge"><span class="mini" aria-hidden="true">✦</span><span>Speed + polish + clarity. The three levers that move small business revenue.</span></div>
+          </div>
+        </div>
+
+        <div class="heroCard reveal" style="transition-delay:.1s" data-tilt>
+          <div class="miniBar">
+            <div class="miniLeft"><div class="dots" aria-hidden="true"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div><span>nexxoid://deploy</span></div>
+            <div class="miniRight"><span class="chip">Speed</span><span class="chip">Design</span><span class="chip">SEO</span></div>
+          </div>
+
+          <div class="heroViz">
+            <div class="vizTop">
+              <div class="metric">
+                <b>Load time</b><div class="val">~0.9s</div><div class="hint">feels instant</div>
+                <svg class="spark" viewBox="0 0 200 60" fill="none" aria-hidden="true">
+                  <path d="M2 52 C40 40, 58 20, 86 28 C110 35, 124 14, 150 16 C170 18, 186 10, 198 6" stroke="rgba(112,255,238,.85)" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M2 52 C40 40, 58 20, 86 28 C110 35, 124 14, 150 16 C170 18, 186 10, 198 6" stroke="rgba(124,92,255,.35)" stroke-width="10" stroke-linecap="round" opacity=".35"/>
+                </svg>
+              </div>
+              <div class="metric">
+                <b>Conversion lift</b><div class="val">+20–40%</div><div class="hint">from UX + clarity</div>
+                <svg class="spark" viewBox="0 0 200 60" fill="none" aria-hidden="true">
+                  <path d="M2 48 C38 46, 52 44, 74 34 C90 27, 104 24, 120 30 C140 38, 158 24, 198 10" stroke="rgba(255,79,216,.8)" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M2 48 C38 46, 52 44, 74 34 C90 27, 104 24, 120 30 C140 38, 158 24, 198 10" stroke="rgba(112,255,238,.25)" stroke-width="10" stroke-linecap="round" opacity=".35"/>
+                </svg>
+              </div>
+            </div>
+
+            <div class="terminal" aria-label="Nexxoid terminal output">
+              <div class="termLine"><span style="color: rgba(234,240,255,.55)">nexxoid</span> <span style="color: rgba(234,240,255,.35)">/</span> <em>build</em> <span style="color: rgba(234,240,255,.35)">--target</span> <span class="warn">small-business</span></div>
+              <div class="termLine">→ scanning offer… <span class="ok">ok</span></div>
+              <div class="termLine">→ compressing assets… <span class="ok">ok</span></div>
+              <div class="termLine">→ tuning conversion paths… <span class="ok">ok</span></div>
+              <div class="termLine">→ shipping “premium feel”… <span class="ok">ok</span><span class="termCursor"></span></div>
+            </div>
+
+            <div class="vizBottom">
+              <div class="ticker" aria-hidden="true">
+                <div class="tickerInner">
+                  <div class="tickerItem">Micro‑interactions</div><div class="tickerItem">Core Web Vitals</div><div class="tickerItem">Local SEO</div><div class="tickerItem">Automation</div><div class="tickerItem">Integrations</div><div class="tickerItem">Conversion UX</div>
+                  <div class="tickerItem">Micro‑interactions</div><div class="tickerItem">Core Web Vitals</div><div class="tickerItem">Local SEO</div><div class="tickerItem">Automation</div><div class="tickerItem">Integrations</div><div class="tickerItem">Conversion UX</div>
+                </div>
+              </div>
+              <button class="pillMini magnetic" id="btnBoost">Run “wow” booster ✦</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="kicker reveal">What we build</div>
+      <h2 class="reveal" style="transition-delay:.06s">A website is the surface. The system is underneath.</h2>
+      <p class="lead reveal" style="transition-delay:.12s">Most agencies sell “pages.” We build the path: message → trust → action. Then we can wire it into your tools.</p>
+
+      <div class="cards">
+        <div class="card reveal" data-tilt><div class="cardGlow"></div><div class="badge"><span class="mini" aria-hidden="true">✦</span><span>Premium feel</span></div><h3>Motion + micro‑interactions</h3><p>Subtle physics, smooth transitions, and clean typography — without bloat.</p></div>
+        <div class="card reveal" data-tilt style="transition-delay:.06s"><div class="cardGlow"></div><div class="badge"><span class="mini" aria-hidden="true">⚡</span><span>Fast</span></div><h3>Performance first</h3><p>Core Web Vitals obsessed. Fast is part of the brand (and helps rankings).</p></div>
+        <div class="card reveal" data-tilt style="transition-delay:.12s"><div class="cardGlow"></div><div class="badge"><span class="mini" aria-hidden="true">◎</span><span>Visibility</span></div><h3>SEO + Google Business</h3><p>Structured content, schema, and local optimization so people actually find you.</p></div>
+      </div>
+
+      <div class="heroCard reveal" style="margin-top: 18px; transition-delay:.16s">
+        <div class="miniBar"><div class="miniLeft"><div class="dots" aria-hidden="true"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div><span>nexxoid://simulator</span></div><div class="miniRight"><span class="chip">Interactive</span><span class="chip">Lightweight</span></div></div>
+        <div class="heroViz">
+          <div><b style="display:block; color: var(--muted); font-size: 13px">Growth Simulator</b><div style="color: var(--muted2); font-size: 12px; margin-top: 6px">Drag sliders — see how clarity + speed affects leads.</div></div>
+
+          <div class="gridHero" style="grid-template-columns: 1fr 1fr; gap:14px">
+            <div class="terminal" style="min-height: 230px">
+              <div class="termLine"><em>Inputs</em></div>
+              <div style="margin-top:10px">
+                <label class="termLine">Monthly visitors: <span id="vVisitors">1,200</span></label>
+                <input id="sVisitors" type="range" min="300" max="20000" value="1200" step="50" style="width:100%; margin-top:10px; accent-color: var(--a1);" />
+              </div>
+              <div style="margin-top:10px">
+                <label class="termLine">Offer clarity: <span id="vClarity">60</span></label>
+                <input id="sClarity" type="range" min="10" max="100" value="60" step="1" style="width:100%; margin-top:10px; accent-color: var(--a1);" />
+              </div>
+              <div style="margin-top:10px">
+                <label class="termLine">Site speed score: <span id="vSpeed">75</span></label>
+                <input id="sSpeed" type="range" min="20" max="100" value="75" step="1" style="width:100%; margin-top:10px; accent-color: var(--a1);" />
+              </div>
+              <div style="margin-top:10px">
+                <label class="termLine">Trust / proof: <span id="vTrust">55</span></label>
+                <input id="sTrust" type="range" min="10" max="100" value="55" step="1" style="width:100%; margin-top:10px; accent-color: var(--a1);" />
+              </div>
+            </div>
+
+            <div class="terminal">
+              <div class="termLine"><em>Projected outcome</em></div>
+              <div style="margin-top:12px; font-size: 44px; letter-spacing:-1px; line-height:1"><span id="rLeads">32</span> <span style="font-size:14px; color: var(--muted)">leads / month</span></div>
+              <div style="margin-top:10px; height:10px; border-radius:999px; background: rgba(255,255,255,.10); overflow:hidden; border:1px solid rgba(255,255,255,.12)">
+                <i id="barFill" style="display:block; height:100%; width:15%; background: linear-gradient(90deg, var(--a1), var(--a2), var(--a3)); border-radius:999px; transition: width .35s var(--ease)"></i>
+              </div>
+              <div style="margin-top:10px; color: var(--muted); font-size: 13px; line-height:1.5" id="rHint">Increase clarity and trust to boost conversions. Speed is the multiplier.</div>
+              <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top: 12px">
+                <span class="chip2" id="rCR">Conv: 2.7%</span>
+                <span class="chip2" id="rQuality">Lead quality: medium</span>
+                <span class="chip2" id="rNote">Action: add proof + tighten CTA</span>
+              </div>
+              <div style="margin-top:14px"><a class="btn btnPrimary magnetic" href="contact.html#scope">Generate a scope draft</a></div>
+            </div>
+          </div>
+
+          <div class="vizBottom">
+            <div class="ticker" aria-hidden="true">
+              <div class="tickerInner">
+                <div class="tickerItem">Book → Build → Launch</div><div class="tickerItem">Offer → Proof → CTA</div><div class="tickerItem">SEO → GBP → Leads</div><div class="tickerItem">Forms → CRM → Follow‑up</div>
+                <div class="tickerItem">Book → Build → Launch</div><div class="tickerItem">Offer → Proof → CTA</div><div class="tickerItem">SEO → GBP → Leads</div><div class="tickerItem">Forms → CRM → Follow‑up</div>
+              </div>
+            </div>
+            <a class="pillMini magnetic" href="services.html">Explore services →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="kicker reveal">Trust</div>
+      <h2 class="reveal" style="transition-delay:.06s">Testimonials (placeholders)</h2>
+      <p class="lead reveal" style="transition-delay:.12s">Until you have real reviews, keep these as placeholders or remove them. Don’t lie — label them.</p>
+
+      <div class="cards">
+        <div class="card reveal" data-tilt><div class="cardGlow"></div><div class="badge"><span class="mini">★</span><span>Placeholder</span></div><h3>“Looks expensive and loads instantly.”</h3><p>We replaced a slow builder site with a clean landing and leads improved within weeks. <br/><span style="color:var(--muted2)">— Local services owner (sample)</span></p></div>
+        <div class="card reveal" data-tilt style="transition-delay:.06s"><div class="cardGlow"></div><div class="badge"><span class="mini">★</span><span>Placeholder</span></div><h3>“Finally, a website that explains what we do.”</h3><p>Offer + proof + CTA made it easy for clients to say yes. <br/><span style="color:var(--muted2)">— Clinic manager (sample)</span></p></div>
+        <div class="card reveal" data-tilt style="transition-delay:.12s"><div class="cardGlow"></div><div class="badge"><span class="mini">★</span><span>Placeholder</span></div><h3>“Our Google profile started ranking.”</h3><p>GBP cleanup + service structure improved Maps visibility. <br/><span style="color:var(--muted2)">— Restaurant owner (sample)</span></p></div>
+      </div>
+
+      <div class="reveal" style="margin-top:14px; transition-delay:.14s">
+        <div class="codeblock">Truth note:
+If you use placeholders, mark them as samples.
+When you get 3 real reviews, delete this section and replace it with real quotes + names.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="kicker reveal">Work</div>
+      <h2 class="reveal" style="transition-delay:.06s">Show the method, then ship the proof.</h2>
+      <p class="lead reveal" style="transition-delay:.12s">You don’t have a public portfolio yet — so we show <b>sample case studies</b>. Once you have real clients, replace these with real numbers.</p>
+
+      <div class="grid12">
+        <article class="work reveal" data-work="0"><div class="workTop"><div><b>GlowDent Clinic</b><small>Local SEO + appointment‑first landing experience.</small></div><span class="workTag">Healthcare</span></div>
+          <div class="workViz"><div class="fakeUI"><div class="fakeTop"><span>glowdent.example</span><span style="opacity:.7">Book → Confirm → Reminder</span></div>
+            <div class="fakeBody"><div class="skeleton big"></div><div class="row2"><div class="skeleton"></div><div class="skeleton"></div></div><div class="row2"><div class="skeleton"></div><div class="skeleton"></div></div></div></div></div>
+          <div class="workBottom"><span class="chip2">sample metrics</span><span class="chip2">fast mobile</span><span class="chip2">maps-ready</span></div>
+        </article>
+        <article class="work reveal" data-work="1" style="transition-delay:.06s"><div class="workTop"><div><b>Vanta Auto Detail</b><small>Luxury motion design + WhatsApp conversion flow.</small></div><span class="workTag">Automotive</span></div>
+          <div class="workViz"><div class="fakeUI"><div class="fakeTop"><span>vanta.example</span><span style="opacity:.7">Quote in 30s</span></div>
+            <div class="fakeBody"><div class="row2"><div class="skeleton big"></div><div class="skeleton big"></div></div><div class="skeleton"></div><div class="row2"><div class="skeleton"></div><div class="skeleton"></div></div></div></div></div>
+          <div class="workBottom"><span class="chip2">WhatsApp funnel</span><span class="chip2">package selector</span><span class="chip2">premium vibe</span></div>
+        </article>
+      </div>
+
+      <div class="reveal" style="margin-top:16px; transition-delay:.1s"><a class="btn btnGhost magnetic" href="work.html">Open full work library →</a></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="kicker reveal">Ready?</div>
+      <h2 class="reveal" style="transition-delay:.06s">If it matters, make it feel serious.</h2>
+      <p class="lead reveal" style="transition-delay:.12s">We’ll do a quick audit (15 minutes), then propose a tight scope you can approve in one email.</p>
+      <div class="ctaRow reveal" style="transition-delay:.18s">
+        <a class="btn btnPrimary magnetic" href="contact.html#book">Book audit</a>
+        <a class="btn btnGhost magnetic" href="contact.html#scope">Generate scope draft</a>
+        <a class="btn btnGhost magnetic" href="pricing.html">See packages</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footGrid">
+        <div>
+          <div class="brand" style="gap:12px">
+            <div class="logo" aria-hidden="true"></div>
+            <div><b>Nexxoid</b><small>Worldwide — US + EU</small></div>
+          </div>
+          <div class="message">Fast builds. Premium feel. Clear outcomes.</div>
+          <div style="margin-top:10px; color: var(--muted); font-size: 13px; line-height: 1.6; max-width: 70ch">
+            Small, senior team — built for speed. We design and ship conversion-first websites, then optionally add SEO, Google Business optimization, integrations and automation.
+          </div>
+          <div style="margin-top:10px; color: var(--muted2); font-size: 12px">
+            Contact: <a href="mailto:info@nexoid.dev" style="text-decoration:underline">info@nexoid.dev</a>
+          </div>
+        </div>
+        <div class="footLinks">
+          <a href="services.html">Services</a>
+          <a href="work.html">Work</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="contact.html">Contact</a>
+          <a href="privacy.html">Privacy</a>
+        </div>
+      </div>
+      <div style="margin-top:18px; color: var(--muted2); font-size: 12px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap">
+        <span>© 2025 Nexxoid. All rights reserved.</span>
+        <span>Built to feel expensive. Built to load fast.</span>
+      </div>
+    </div>
+  </footer>
+  <script>window.NEXXOID_EMAIL = "info@nexoid.dev";</script>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>

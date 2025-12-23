@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>404 — Nexxoid</title>
+  <meta name="description" content="Page not found." />
+  <meta name="theme-color" content="#05060a" />
+  <meta property="og:title" content="404 — Nexxoid" />
+  <meta property="og:description" content="Page not found." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Nexxoid" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <!-- Optional premium fonts; remove for zero external calls -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body{font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial}
+    h1,h2,h3,b{font-family: Space Grotesk, Inter, ui-sans-serif, system-ui}
+  </style>
+  <link rel="canonical" href="https://nexxoid.com/404.html" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Nexxoid", "url": "https://nexxoid.com/", "contactPoint": [{"@type": "ContactPoint", "contactType": "sales", "email": "info@nexoid.dev", "availableLanguage": ["en"]}], "areaServed": ["US", "EU"]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Nexxoid", "url": "https://nexxoid.com/", "inLanguage": "en"}</script>
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+  <canvas id="fx"></canvas>
+  <div class="grain"></div>
+  <div class="cursorGlow" id="cursorGlow"></div>
+
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawerPanel" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="drawerTop">
+        <a class="brand" href="index.html" aria-label="Nexxoid home">
+          <div class="logo" aria-hidden="true"></div>
+          <div><b>Nexxoid</b><small>websites + growth systems</small></div>
+        </a>
+        <button class="hamburger" id="closeDrawer" aria-label="Close menu">✕</button>
+      </div>
+      <div class="drawerNav">
+        <a href="services.html" data-close-drawer>Services</a>
+        <a href="work.html" data-close-drawer>Work</a>
+        <a href="pricing.html" data-close-drawer>Pricing</a>
+        <a href="contact.html" data-close-drawer>Contact</a>
+        <a href="privacy.html" data-close-drawer>Privacy</a>
+      </div>
+      <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
+        <button class="pill" id="openPaletteMobile" style="flex:1"><span>Command</span> <span class="kbd">Ctrl K</span></button>
+        <button class="pill" id="themeToggleMobile" style="flex:1"><span>Theme</span> <span class="kbd">Neon/Void</span></button>
+      </div>
+      <div style="margin-top:14px; color: rgba(234,240,255,.6); font-size: 12px; line-height:1.5">
+        Tip: Use Ctrl+K to jump around quickly. Tap Work cards to open the blueprint.
+      </div>
+    </div>
+  </div>
+
+  <div class="palette" id="palette" aria-hidden="true">
+    <div class="paletteBox" role="dialog" aria-modal="true" aria-label="Command Palette">
+      <div class="paletteTop">
+        <span class="kbd">Ctrl</span><span class="kbd">K</span>
+        <input id="paletteInput" type="text" placeholder="Type to navigate… (e.g. work, pricing, contact)" autocomplete="off" />
+      </div>
+      <div class="paletteList" id="paletteList"></div>
+      <div class="paletteHint">
+        <span>↑ ↓ to select · Enter to go · Esc to close</span>
+        <span>Try: “audit”, “scope”, “privacy”, “pricing”</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modalBox" role="dialog" aria-modal="true" aria-label="Details">
+      <div class="modalTop">
+        <b id="modalTitle">Details</b>
+        <button class="x" id="modalClose" aria-label="Close">✕</button>
+      </div>
+      <div class="modalBody" id="modalBody"></div>
+    </div>
+  </div>
+
+  <div class="cookie" id="cookie" aria-hidden="true">
+    <div class="cookieBox" role="dialog" aria-modal="true" aria-label="Cookie banner">
+      <div class="cookieTop">
+        <b>Cookies & privacy</b>
+        <button class="x" onclick="hideCookie()" aria-label="Close">✕</button>
+      </div>
+      <div class="cookieBody">
+        <p style="margin:0">This site is static and lightweight. We store your theme preference and cookie choice. If analytics are added later, we’ll update this notice.</p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px">
+          <button class="btn btnPrimary magnetic" id="cookieAccept">Accept all (future)</button>
+          <button class="btn btnGhost magnetic" id="cookieEssential">Essential only</button>
+          <button class="btn btnGhost magnetic" id="cookieManage">Manage</button>
+        </div>
+        <div class="smallNote">See details in <a href="privacy.html" style="text-decoration:underline">Privacy Policy</a>.</div>
+      </div>
+    </div>
+  </div>
+
+  <header class="nav">
+    <div class="wrap">
+      <div class="navInner">
+        <a class="brand" href="index.html" aria-label="Nexxoid home">
+          <div class="logo" aria-hidden="true"></div>
+          <div><b>Nexxoid</b><small>websites + growth systems</small></div>
+        </a>
+
+        <nav class="menu" aria-label="Primary">
+          <a href="services.html">Services</a>
+          <a href="work.html">Work</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="contact.html">Contact</a>
+          <a href="privacy.html">Privacy</a>
+        </nav>
+
+        <div class="right">
+          <button class="pill" id="openPalette" title="Open command palette (Ctrl+K)"><span>Command</span><span class="kbd">Ctrl K</span></button>
+          <button class="pill" id="themeToggle" title="Toggle theme"><span>Theme:</span><span id="themeName">Neon</span></button>
+          <button class="hamburger" id="openDrawer" aria-label="Open menu">☰</button>
+        </div>
+      </div>
+    </div>
+  </header>
+<script>
+window.NEXXOID_COMMANDS = [{"id": "audit", "title": "Book a 15\u2011min audit", "hint": "Contact page", "run": "(()=>{location.href='contact.html#book';})"}, {"id": "services", "title": "Go to Services", "hint": "What we offer", "run": "(()=>{location.href='services.html';})"}, {"id": "work", "title": "Go to Work", "hint": "Sample case studies", "run": "(()=>{location.href='work.html';})"}, {"id": "pricing", "title": "Go to Pricing", "hint": "Packages + add-ons", "run": "(()=>{location.href='pricing.html';})"}, {"id": "contact", "title": "Go to Contact", "hint": "Send inquiry / scope draft", "run": "(()=>{location.href='contact.html';})"}, {"id": "privacy", "title": "Go to Privacy", "hint": "Privacy + cookies", "run": "(()=>{location.href='privacy.html';})"}, {"id": "theme", "title": "Toggle theme", "hint": "Neon \u2194 Void", "run": "(()=>{document.getElementById('themeToggle')?.click();})"}].map(c=>({...c, run: eval(c.run)}));
+</script>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="tag reveal"><span class="tagDot" aria-hidden="true"></span><span>404</span></div>
+      <h1 class="reveal" style="transition-delay:.06s">This page doesn’t exist.</h1>
+      <p class="sub reveal" style="transition-delay:.12s">Use Ctrl+K to navigate.</p>
+      <div class="ctaRow reveal" style="transition-delay:.18s"><a class="btn btnPrimary magnetic" href="index.html">Go home</a><a class="btn btnGhost magnetic" href="contact.html">Contact</a></div>
+    </div>
+  </section>
+</main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footGrid">
+        <div>
+          <div class="brand" style="gap:12px">
+            <div class="logo" aria-hidden="true"></div>
+            <div><b>Nexxoid</b><small>Worldwide — US + EU</small></div>
+          </div>
+          <div class="message">Fast builds. Premium feel. Clear outcomes.</div>
+          <div style="margin-top:10px; color: var(--muted); font-size: 13px; line-height: 1.6; max-width: 70ch">
+            Small, senior team — built for speed. We design and ship conversion-first websites, then optionally add SEO, Google Business optimization, integrations and automation.
+          </div>
+          <div style="margin-top:10px; color: var(--muted2); font-size: 12px">
+            Contact: <a href="mailto:info@nexoid.dev" style="text-decoration:underline">info@nexoid.dev</a>
+          </div>
+        </div>
+        <div class="footLinks">
+          <a href="services.html">Services</a>
+          <a href="work.html">Work</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="contact.html">Contact</a>
+          <a href="privacy.html">Privacy</a>
+        </div>
+      </div>
+      <div style="margin-top:18px; color: var(--muted2); font-size: 12px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap">
+        <span>© 2025 Nexxoid. All rights reserved.</span>
+        <span>Built to feel expensive. Built to load fast.</span>
+      </div>
+    </div>
+  </footer>
+  <script>window.NEXXOID_EMAIL = "info@nexoid.dev";</script>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>
