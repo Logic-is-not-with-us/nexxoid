@@ -144,6 +144,15 @@
     const DPR = Math.min(2, window.devicePixelRatio || 1);
     const state = { w: 0, h: 0, pts: [] };
 
+    const rand = (a, b) => a + Math.random() * (b - a);
+    const makePts = (n) => Array.from({ length: n }, () => ({
+      x: rand(0, state.w),
+      y: rand(0, state.h),
+      vx: rand(-0.14, 0.14),
+      vy: rand(-0.10, 0.10),
+      r: rand(1.2, 2.8),
+    }));
+
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
       state.w = Math.floor(rect.width);
@@ -152,8 +161,52 @@
       canvas.height = Math.floor(state.h * DPR);
       ctx.setTransform(DPR,0,0,DPR,0,0);
       const n = Math.max(26, Math.floor(state.w / 50));
-      state.pts = [*range(n)]  # placeholder
+      state.pts = makePts(n);
     };
+
+    const tick = () => {
+      ctx.clearRect(0, 0, state.w, state.h);
+      // Very light, premium background: slow particles + subtle links
+      ctx.globalCompositeOperation = 'lighter';
+      for (let i = 0; i < state.pts.length; i++) {
+        const p = state.pts[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < -20) p.x = state.w + 20;
+        if (p.x > state.w + 20) p.x = -20;
+        if (p.y < -20) p.y = state.h + 20;
+        if (p.y > state.h + 20) p.y = -20;
+
+        // dot
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(140, 120, 255, 0.09)';
+        ctx.fill();
+      }
+      // link nearby points (limited cost)
+      for (let i = 0; i < state.pts.length; i++) {
+        for (let j = i + 1; j < state.pts.length; j++) {
+          const a = state.pts[i], b = state.pts[j];
+          const dx = a.x - b.x, dy = a.y - b.y;
+          const d2 = dx * dx + dy * dy;
+          if (d2 < 140 * 140) {
+            const alpha = 1 - (Math.sqrt(d2) / 140);
+            ctx.strokeStyle = `rgba(120, 210, 255, ${0.06 * alpha})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+      ctx.globalCompositeOperation = 'source-over';
+      requestAnimationFrame(tick);
+    };
+
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+    requestAnimationFrame(tick);
   }
 
   // Scope Builder
