@@ -1,62 +1,78 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="neon">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Work — Nexxoid</title>
-  <meta name="description" content="Sample case studies showing our method: conversion-first websites, local SEO, WhatsApp funnels, and lightweight performance builds." />
-  <meta name="theme-color" content="#05060a" />
-  <meta property="og:title" content="Work — Nexxoid" />
-  <meta property="og:description" content="Sample case studies showing our method: conversion-first websites, local SEO, WhatsApp funnels, and lightweight performance builds." />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Nexxoid" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <title>Nexxoid — Work (placeholder)</title>
+  <meta name="description" content="Premium websites + growth systems for small businesses." />
+  <meta name="theme-color" content="#05060d" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/style.css" />
-  <!-- Optional premium fonts; remove for zero external calls -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    body{font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial}
-    h1,h2,h3,b{font-family: Space Grotesk, Inter, ui-sans-serif, system-ui}
-  </style>
-  <link rel="canonical" href="https://nexxoid.com/work.html" />
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Nexxoid", "url": "https://nexxoid.com/", "contactPoint": [{"@type": "ContactPoint", "contactType": "sales", "email": "info@nexoid.dev", "availableLanguage": ["en"]}], "areaServed": ["US", "EU"]}</script>
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Nexxoid", "url": "https://nexxoid.com/", "inLanguage": "en"}</script>
 </head>
 <body>
-  <div class="progress" id="progress"></div>
-  <canvas id="fx"></canvas>
-  <div class="grain"></div>
-  <div class="cursorGlow" id="cursorGlow"></div>
+  <div id="progress"></div>
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <div class="noise" aria-hidden="true"></div>
+  <div id="cursorGlow" aria-hidden="true"></div>
+
+  <div class="nav">
+    <div class="container navInner">
+      <a class="brand" href="index.html" aria-label="Nexxoid home">
+        <div class="logo" aria-hidden="true"></div>
+        <div class="brandText"><b>Nexxoid</b><small>websites + growth systems</small></div>
+      </a>
+
+      <div class="navLinks" aria-label="Primary">
+        <a href="services.html" class="">Services</a>
+        <a href="work.html" class="active">Work</a>
+        <a href="pricing.html" class="">Pricing</a>
+        <a href="contact.html" class="">Contact</a>
+        <a href="privacy.html" class="">Privacy</a>
+      </div>
+
+      <div class="navRight">
+        <button class="pill" id="openPalette" type="button"><span>Command</span> <span class="kbd">Ctrl K</span></button>
+        <button class="pill" id="themeToggle" type="button"><span>Theme:</span> <span id="themeName">Neon</span></button>
+        <button class="hamburger" id="openDrawer" type="button" aria-label="Open menu"></button>
+      </div>
+    </div>
+  </div>
 
   <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawerBackdrop"></div>
     <div class="drawerPanel" role="dialog" aria-modal="true" aria-label="Menu">
       <div class="drawerTop">
-        <a class="brand" href="index.html" aria-label="Nexxoid home">
+        <div class="brand">
           <div class="logo" aria-hidden="true"></div>
-          <div><b>Nexxoid</b><small>websites + growth systems</small></div>
-        </a>
-        <button class="hamburger" id="closeDrawer" aria-label="Close menu">✕</button>
+          <div class="brandText"><b>Nexxoid</b><small>websites + growth systems</small></div>
+        </div>
+        <button class="hamburger" id="closeDrawer" type="button" aria-label="Close menu"></button>
       </div>
+
       <div class="drawerNav">
         <a href="services.html" data-close-drawer>Services</a>
         <a href="work.html" data-close-drawer>Work</a>
         <a href="pricing.html" data-close-drawer>Pricing</a>
         <a href="contact.html" data-close-drawer>Contact</a>
         <a href="privacy.html" data-close-drawer>Privacy</a>
+
+        <div class="hr"></div>
+        <button class="pill" id="openPaletteMobile" type="button" style="justify-content:space-between"><span>Command</span><span class="kbd">Ctrl K</span></button>
+        <button class="pill" id="themeToggleMobile" type="button" style="justify-content:space-between"><span>Theme</span><span class="kbd">Neon/Void</span></button>
       </div>
-      <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
-        <button class="pill" id="openPaletteMobile" style="flex:1"><span>Command</span> <span class="kbd">Ctrl K</span></button>
-        <button class="pill" id="themeToggleMobile" style="flex:1"><span>Theme</span> <span class="kbd">Neon/Void</span></button>
-      </div>
-      <div style="margin-top:14px; color: rgba(234,240,255,.6); font-size: 12px; line-height:1.5">
-        Tip: Use Ctrl+K to jump around quickly. Tap Work cards to open the blueprint.
+
+      <div style="margin-top:14px; color: rgba(240,244,255,.62); font-size: 12px; line-height:1.5">
+        Tip: Use Ctrl+K to jump. Tap a Work card to open a blueprint.
       </div>
     </div>
   </div>
 
   <div class="palette" id="palette" aria-hidden="true">
+    <div class="paletteBackdrop"></div>
     <div class="paletteBox" role="dialog" aria-modal="true" aria-label="Command Palette">
       <div class="paletteTop">
         <span class="kbd">Ctrl</span><span class="kbd">K</span>
@@ -65,138 +81,92 @@
       <div class="paletteList" id="paletteList"></div>
       <div class="paletteHint">
         <span>↑ ↓ to select · Enter to go · Esc to close</span>
-        <span>Try: “audit”, “scope”, “privacy”, “pricing”</span>
+        <span class="miniNote">Fast, static, lightweight</span>
       </div>
     </div>
   </div>
 
   <div class="modal" id="modal" aria-hidden="true">
-    <div class="modalBox" role="dialog" aria-modal="true" aria-label="Details">
+    <div class="modalBackdrop"></div>
+    <div class="modalPanel" role="dialog" aria-modal="true">
       <div class="modalTop">
-        <b id="modalTitle">Details</b>
-        <button class="x" id="modalClose" aria-label="Close">✕</button>
+        <div class="modalTitle" id="modalTitle">Details</div>
+        <button class="modalClose" id="modalClose" type="button" aria-label="Close">✕</button>
       </div>
       <div class="modalBody" id="modalBody"></div>
     </div>
   </div>
 
-  <div class="cookie" id="cookie" aria-hidden="true">
-    <div class="cookieBox" role="dialog" aria-modal="true" aria-label="Cookie banner">
-      <div class="cookieTop">
-        <b>Cookies & privacy</b>
-        <button class="x" onclick="hideCookie()" aria-label="Close">✕</button>
-      </div>
-      <div class="cookieBody">
-        <p style="margin:0">This site is static and lightweight. We store your theme preference and cookie choice. If analytics are added later, we’ll update this notice.</p>
-        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px">
-          <button class="btn btnPrimary magnetic" id="cookieAccept">Accept all (future)</button>
-          <button class="btn btnGhost magnetic" id="cookieEssential">Essential only</button>
-          <button class="btn btnGhost magnetic" id="cookieManage">Manage</button>
+  <main class="topPad">
+
+<section class="section">
+  <div class="container">
+    <div class="card reveal">
+      <div class="cardInner">
+        <div class="badgeRow">
+          <span class="badge"><span class="dot"></span>Work</span>
+          <span class="badge">Blueprints you can copy</span>
+          <span class="badge">Placeholders until your real portfolio is ready</span>
         </div>
-        <div class="smallNote">See details in <a href="privacy.html" style="text-decoration:underline">Privacy Policy</a>.</div>
+        <h1 style="margin-top:12px">Sample outcomes (placeholder)</h1>
+        <p class="lead">
+          You said you don’t have a portfolio yet — fair. These are <b>clearly marked examples</b> to show
+          structure and capability. Replace with real projects later.
+        </p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="workGrid">
+        <div class="panel cardLink reveal workCard" data-work="0">
+          <h3>Restaurant site + menu</h3>
+          <p>Fast landing, menu module, maps visibility checklist.</p>
+          <div class="workMeta"><span>placeholder</span><span>menu</span><span>GBP</span></div>
+        </div>
+        <div class="panel cardLink reveal workCard" data-work="1">
+          <h3>Dentist credibility system</h3>
+          <p>Service pages, scheduling, reviews, tracking.</p>
+          <div class="workMeta"><span>placeholder</span><span>local seo</span><span>bookings</span></div>
+        </div>
+        <div class="panel cardLink reveal workCard" data-work="2">
+          <h3>Law firm acquisition stack</h3>
+          <p>Authority, lead capture, funnel measurement.</p>
+          <div class="workMeta"><span>placeholder</span><span>tracking</span><span>routing</span></div>
+        </div>
+      </div>
+
+      <div class="panel reveal" style="margin-top:14px">
+        <div class="panelInner">
+          <h2>Testimonials (placeholder)</h2>
+          <p>Replace these with real ones ASAP. Until then: keep them vague and clearly labeled.</p>
+          <div class="list">
+            <div class="item"><span class="bullet"></span><div><b>“Felt like a premium brand overnight.”</b><small>Placeholder · Owner, local service business</small></div></div>
+            <div class="item"><span class="bullet"></span><div><b>“Calls increased within weeks.”</b><small>Placeholder · Restaurant manager</small></div></div>
+            <div class="item"><span class="bullet"></span><div><b>“Finally a site that loads fast and looks expensive.”</b><small>Placeholder · Clinic admin</small></div></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+</section>
 
-  <header class="nav">
-    <div class="wrap">
-      <div class="navInner">
-        <a class="brand" href="index.html" aria-label="Nexxoid home">
+  </main>
+
+  <div class="footer">
+    <div class="container footerGrid">
+      <div style="max-width:520px">
+        <div class="brand">
           <div class="logo" aria-hidden="true"></div>
-          <div><b>Nexxoid</b><small>websites + growth systems</small></div>
-        </a>
-
-        <nav class="menu" aria-label="Primary">
-          <a href="services.html">Services</a>
-          <a href="work.html" class="active">Work</a>
-          <a href="pricing.html">Pricing</a>
-          <a href="contact.html">Contact</a>
-          <a href="privacy.html">Privacy</a>
-        </nav>
-
-        <div class="right">
-          <button class="pill" id="openPalette" title="Open command palette (Ctrl+K)"><span>Command</span><span class="kbd">Ctrl K</span></button>
-          <button class="pill" id="themeToggle" title="Toggle theme"><span>Theme:</span><span id="themeName">Neon</span></button>
-          <button class="hamburger" id="openDrawer" aria-label="Open menu">☰</button>
+          <div class="brandText"><b>Nexxoid</b><small>Worldwide — US + EU</small></div>
         </div>
-      </div>
-    </div>
-  </header>
-<script>
-window.NEXXOID_COMMANDS = [{"id": "audit", "title": "Book a 15\u2011min audit", "hint": "Contact page", "run": "(()=>{location.href='contact.html#book';})"}, {"id": "services", "title": "Go to Services", "hint": "What we offer", "run": "(()=>{location.href='services.html';})"}, {"id": "work", "title": "Go to Work", "hint": "Sample case studies", "run": "(()=>{location.href='work.html';})"}, {"id": "pricing", "title": "Go to Pricing", "hint": "Packages + add-ons", "run": "(()=>{location.href='pricing.html';})"}, {"id": "contact", "title": "Go to Contact", "hint": "Send inquiry / scope draft", "run": "(()=>{location.href='contact.html';})"}, {"id": "privacy", "title": "Go to Privacy", "hint": "Privacy + cookies", "run": "(()=>{location.href='privacy.html';})"}, {"id": "theme", "title": "Toggle theme", "hint": "Neon \u2194 Void", "run": "(()=>{document.getElementById('themeToggle')?.click();})"}].map(c=>({...c, run: eval(c.run)}));
-</script>
-<script>
-window.NEXXOID_WORK = [{"title": "GlowDent Clinic \u2014 Local SEO + appointment UX", "html": "\n          <p><b>Goal:</b> turn local search traffic into booked appointments.</p>\n          <div class=\"cols\">\n            <div class=\"codeblock\">WHAT WE BUILT\n- One-page funnel (services \u2192 proof \u2192 CTA)\n- Map pack / GBP checklist\n- Form \u2192 email routing\n- Performance pass (fast images, clean JS)</div>\n            <div class=\"codeblock\">MECHANICS\n- Clear offer blocks per treatment\n- \u201cProof stack\u201d section\n- Call/Book CTAs above the fold\n- Schema markup for local business</div>\n          </div>\n          <hr class=\"sep\"/>\n          <p style=\"margin:0\"><small>Note: This is a <b>sample case study</b>. Replace with real client data later.</small></p>\n        "}, {"title": "Vanta Auto Detail \u2014 Luxury motion + WhatsApp funnel", "html": "\n          <p><b>Goal:</b> increase quote requests without adding staff workload.</p>\n          <div class=\"cols\">\n            <div class=\"codeblock\">WHAT WE BUILT\n- Motion-first landing\n- Package selector\n- WhatsApp handoff with prefilled message\n- Follow-up checklist</div>\n            <div class=\"codeblock\">WHY IT WORKS\n- Users pick a package in < 30 seconds\n- WhatsApp reduces friction\n- Visual proof sells premium service</div>\n          </div>\n          <hr class=\"sep\"/>\n          <p style=\"margin:0\"><small>Sample case study.</small></p>\n        "}, {"title": "Midnight Bakery \u2014 Click-to-order + pickup scheduling", "html": "\n          <p><b>Goal:</b> sell daily specials and simplify pickups.</p>\n          <div class=\"cols\">\n            <div class=\"codeblock\">WHAT WE BUILT\n- Product grid (lite ecom)\n- Pickup time selection\n- Payment-ready layout\n- Fast mobile UX</div>\n            <div class=\"codeblock\">OPTIONAL NEXT\n- Integrate Stripe checkout\n- Connect to POS or Google Sheets\n- Add seasonal pages for SEO</div>\n          </div>\n          <hr class=\"sep\"/>\n          <p style=\"margin:0\"><small>Sample case study.</small></p>\n        "}, {"title": "NorthStar Legal \u2014 Authority design + lead qualification", "html": "\n          <p><b>Goal:</b> filter tire-kickers and attract higher-value consultations.</p>\n          <div class=\"cols\">\n            <div class=\"codeblock\">WHAT WE BUILT\n- Authority layout\n- Qualification form\n- Practice-area structure\n- SEO baseline</div>\n            <div class=\"codeblock\">MECHANICS\n- Clear \u201cwho we help\u201d section\n- Case types list\n- Consult CTA + qualification\n- Fast follow-up sequence</div>\n          </div>\n          <hr class=\"sep\"/>\n          <p style=\"margin:0\"><small>Sample case study.</small></p>\n        "}];
-</script>
-
-<main>
-  <section class="hero">
-    <div class="wrap">
-      <div class="tag reveal"><span class="tagDot" aria-hidden="true"></span><span>Work · Sample case studies · Tap to open breakdown</span></div>
-      <h1 class="reveal" style="transition-delay:.06s">Case studies (method first).</h1>
-      <p class="sub reveal" style="transition-delay:.12s">These are <b>sample</b> case studies to communicate the mechanics. Replace with real projects and KPIs as you land clients.</p>
-      <div class="ctaRow reveal" style="transition-delay:.18s">
-        <a class="btn btnPrimary magnetic" href="contact.html#book">Book a 15‑min audit</a>
-        <a class="btn btnGhost magnetic" href="pricing.html">See packages</a>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="kicker reveal">Library</div>
-      <h2 class="reveal" style="transition-delay:.06s">Tap a card to see the build blueprint.</h2>
-      <p class="lead reveal" style="transition-delay:.12s">Each breakdown shows “what we built” and “why it works.”</p>
-
-      <div class="grid12">
-        <article class="work reveal" data-work="0"><div class="workTop"><div><b>GlowDent Clinic</b><small>Local SEO + appointment-first landing experience.</small></div><span class="workTag">Healthcare</span></div>
-          <div class="workViz"><div class="fakeUI"><div class="fakeTop"><span>glowdent.example</span><span style="opacity:.7">Book → Confirm → Reminder</span></div>
-            <div class="fakeBody"><div class="skeleton big"></div><div class="row2"><div class="skeleton"></div><div class="skeleton"></div></div><div class="row2"><div class="skeleton"></div><div class="skeleton"></div></div></div></div></div>
-          <div class="workBottom"><span class="chip2">local SEO</span><span class="chip2">schema</span><span class="chip2">fast UX</span></div>
-        </article>
-
-        <article class="work reveal" data-work="1" style="transition-delay:.06s"><div class="workTop"><div><b>Vanta Auto Detail</b><small>Luxury motion + WhatsApp conversion flow.</small></div><span class="workTag">Automotive</span></div>
-          <div class="workViz"><div class="fakeUI"><div class="fakeTop"><span>vanta.example</span><span style="opacity:.7">Quote in 30s</span></div>
-            <div class="fakeBody"><div class="row2"><div class="skeleton big"></div><div class="skeleton big"></div></div><div class="skeleton"></div><div class="row2"><div class="skeleton"></div><div class="skeleton"></div></div></div></div></div>
-          <div class="workBottom"><span class="chip2">WhatsApp</span><span class="chip2">packages</span><span class="chip2">luxury vibe</span></div>
-        </article>
-
-        <article class="work reveal" data-work="2" style="transition-delay:.12s"><div class="workTop"><div><b>Midnight Bakery</b><small>E‑commerce lite + pickup scheduling.</small></div><span class="workTag">Food</span></div>
-          <div class="workViz"><div class="fakeUI"><div class="fakeTop"><span>midnight.example</span><span style="opacity:.7">Add → Pay → Pickup</span></div>
-            <div class="fakeBody"><div class="skeleton big"></div><div class="row2"><div class="skeleton"></div><div class="skeleton"></div></div><div class="skeleton"></div><div class="row2"><div class="skeleton"></div><div class="skeleton"></div></div></div></div></div>
-          <div class="workBottom"><span class="chip2">Stripe-ready</span><span class="chip2">pickup</span><span class="chip2">SEO pages</span></div>
-        </article>
-
-        <article class="work reveal" data-work="3" style="transition-delay:.18s"><div class="workTop"><div><b>NorthStar Legal</b><small>Authority design + lead qualification form.</small></div><span class="workTag">Professional</span></div>
-          <div class="workViz"><div class="fakeUI"><div class="fakeTop"><span>northstar.example</span><span style="opacity:.7">Qualify → Consult</span></div>
-            <div class="fakeBody"><div class="row2"><div class="skeleton"></div><div class="skeleton"></div></div><div class="skeleton big"></div><div class="row2"><div class="skeleton"></div><div class="skeleton"></div></div><div class="skeleton"></div></div></div></div>
-          <div class="workBottom"><span class="chip2">lead quality</span><span class="chip2">trust</span><span class="chip2">fast follow-up</span></div>
-        </article>
-      </div>
-
-      <div class="reveal" style="margin-top:16px; transition-delay:.12s">
-        <div class="codeblock">How to replace samples later:\n1) Add real screenshots + anonymize sensitive info.\n2) Replace “sample metrics” with real KPIs.\n3) Link each case to a dedicated page for SEO.</div>
-      </div>
-    </div>
-  </section>
-</main>
-
-  <footer>
-    <div class="wrap">
-      <div class="footGrid">
-        <div>
-          <div class="brand" style="gap:12px">
-            <div class="logo" aria-hidden="true"></div>
-            <div><b>Nexxoid</b><small>Worldwide — US + EU</small></div>
-          </div>
-          <div class="message">Fast builds. Premium feel. Clear outcomes.</div>
-          <div style="margin-top:10px; color: var(--muted); font-size: 13px; line-height: 1.6; max-width: 70ch">
-            Small, senior team — built for speed. We design and ship conversion-first websites, then optionally add SEO, Google Business optimization, integrations and automation.
-          </div>
-          <div style="margin-top:10px; color: var(--muted2); font-size: 12px">
-            Contact: <a href="mailto:info@nexoid.dev" style="text-decoration:underline">info@nexoid.dev</a>
-          </div>
+        <div style="margin-top:10px; color: rgba(240,244,255,.68); line-height:1.6">
+          Fast builds. Premium feel. Clear outcomes. We design and ship conversion-first websites,
+          then optionally add SEO, Google Business optimization, integrations and automation.
         </div>
+        <div style="margin-top:10px" class="miniNote">Contact: <a href="mailto:info@nexoid.dev">info@nexoid.dev</a></div>
+        <div style="margin-top:8px; color: rgba(240,244,255,.52); font-size: 12px">© 2025 Nexxoid. All rights reserved.</div>
+      </div>
+      <div>
         <div class="footLinks">
           <a href="services.html">Services</a>
           <a href="work.html">Work</a>
@@ -204,14 +174,24 @@ window.NEXXOID_WORK = [{"title": "GlowDent Clinic \u2014 Local SEO + appointment
           <a href="contact.html">Contact</a>
           <a href="privacy.html">Privacy</a>
         </div>
-      </div>
-      <div style="margin-top:18px; color: var(--muted2); font-size: 12px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap">
-        <span>© 2025 Nexxoid. All rights reserved.</span>
-        <span>Built to feel expensive. Built to load fast.</span>
+        <div style="margin-top:10px" class="miniNote">Built to feel expensive. Built to load fast.</div>
       </div>
     </div>
-  </footer>
-  <script>window.NEXXOID_EMAIL = "info@nexoid.dev";</script>
+  </div>
+
+  <div class="cookie" id="cookie">
+    <div class="cookieInner">
+      <div class="cookieCard">
+        <p><b>Cookies & privacy</b><br/>We store only your theme preference and cookie choice. If analytics are added later, we’ll update this notice.</p>
+        <div class="cookieBtns">
+          <button class="btn primary" id="cookieAccept" type="button">Accept all (future)</button>
+          <button class="btn" id="cookieEssential" type="button">Essential only</button>
+          <button class="btn ghost" id="cookieManage" type="button">Manage</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="assets/app.js" defer></script>
 </body>
 </html>

@@ -1,62 +1,78 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="neon">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Contact — Nexxoid</title>
-  <meta name="description" content="Contact Nexxoid: book a 15‑minute audit, send an inquiry, or generate a scope draft." />
-  <meta name="theme-color" content="#05060a" />
-  <meta property="og:title" content="Contact — Nexxoid" />
-  <meta property="og:description" content="Contact Nexxoid: book a 15‑minute audit, send an inquiry, or generate a scope draft." />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Nexxoid" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <title>Nexxoid — Contact</title>
+  <meta name="description" content="Premium websites + growth systems for small businesses." />
+  <meta name="theme-color" content="#05060d" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/style.css" />
-  <!-- Optional premium fonts; remove for zero external calls -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    body{font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial}
-    h1,h2,h3,b{font-family: Space Grotesk, Inter, ui-sans-serif, system-ui}
-  </style>
-  <link rel="canonical" href="https://nexxoid.com/contact.html" />
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Nexxoid", "url": "https://nexxoid.com/", "contactPoint": [{"@type": "ContactPoint", "contactType": "sales", "email": "info@nexoid.dev", "availableLanguage": ["en"]}], "areaServed": ["US", "EU"]}</script>
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Nexxoid", "url": "https://nexxoid.com/", "inLanguage": "en"}</script>
 </head>
 <body>
-  <div class="progress" id="progress"></div>
-  <canvas id="fx"></canvas>
-  <div class="grain"></div>
-  <div class="cursorGlow" id="cursorGlow"></div>
+  <div id="progress"></div>
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <div class="noise" aria-hidden="true"></div>
+  <div id="cursorGlow" aria-hidden="true"></div>
+
+  <div class="nav">
+    <div class="container navInner">
+      <a class="brand" href="index.html" aria-label="Nexxoid home">
+        <div class="logo" aria-hidden="true"></div>
+        <div class="brandText"><b>Nexxoid</b><small>websites + growth systems</small></div>
+      </a>
+
+      <div class="navLinks" aria-label="Primary">
+        <a href="services.html" class="">Services</a>
+        <a href="work.html" class="">Work</a>
+        <a href="pricing.html" class="">Pricing</a>
+        <a href="contact.html" class="active">Contact</a>
+        <a href="privacy.html" class="">Privacy</a>
+      </div>
+
+      <div class="navRight">
+        <button class="pill" id="openPalette" type="button"><span>Command</span> <span class="kbd">Ctrl K</span></button>
+        <button class="pill" id="themeToggle" type="button"><span>Theme:</span> <span id="themeName">Neon</span></button>
+        <button class="hamburger" id="openDrawer" type="button" aria-label="Open menu"></button>
+      </div>
+    </div>
+  </div>
 
   <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawerBackdrop"></div>
     <div class="drawerPanel" role="dialog" aria-modal="true" aria-label="Menu">
       <div class="drawerTop">
-        <a class="brand" href="index.html" aria-label="Nexxoid home">
+        <div class="brand">
           <div class="logo" aria-hidden="true"></div>
-          <div><b>Nexxoid</b><small>websites + growth systems</small></div>
-        </a>
-        <button class="hamburger" id="closeDrawer" aria-label="Close menu">✕</button>
+          <div class="brandText"><b>Nexxoid</b><small>websites + growth systems</small></div>
+        </div>
+        <button class="hamburger" id="closeDrawer" type="button" aria-label="Close menu"></button>
       </div>
+
       <div class="drawerNav">
         <a href="services.html" data-close-drawer>Services</a>
         <a href="work.html" data-close-drawer>Work</a>
         <a href="pricing.html" data-close-drawer>Pricing</a>
         <a href="contact.html" data-close-drawer>Contact</a>
         <a href="privacy.html" data-close-drawer>Privacy</a>
+
+        <div class="hr"></div>
+        <button class="pill" id="openPaletteMobile" type="button" style="justify-content:space-between"><span>Command</span><span class="kbd">Ctrl K</span></button>
+        <button class="pill" id="themeToggleMobile" type="button" style="justify-content:space-between"><span>Theme</span><span class="kbd">Neon/Void</span></button>
       </div>
-      <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
-        <button class="pill" id="openPaletteMobile" style="flex:1"><span>Command</span> <span class="kbd">Ctrl K</span></button>
-        <button class="pill" id="themeToggleMobile" style="flex:1"><span>Theme</span> <span class="kbd">Neon/Void</span></button>
-      </div>
-      <div style="margin-top:14px; color: rgba(234,240,255,.6); font-size: 12px; line-height:1.5">
-        Tip: Use Ctrl+K to jump around quickly. Tap Work cards to open the blueprint.
+
+      <div style="margin-top:14px; color: rgba(240,244,255,.62); font-size: 12px; line-height:1.5">
+        Tip: Use Ctrl+K to jump. Tap a Work card to open a blueprint.
       </div>
     </div>
   </div>
 
   <div class="palette" id="palette" aria-hidden="true">
+    <div class="paletteBackdrop"></div>
     <div class="paletteBox" role="dialog" aria-modal="true" aria-label="Command Palette">
       <div class="paletteTop">
         <span class="kbd">Ctrl</span><span class="kbd">K</span>
@@ -65,210 +81,159 @@
       <div class="paletteList" id="paletteList"></div>
       <div class="paletteHint">
         <span>↑ ↓ to select · Enter to go · Esc to close</span>
-        <span>Try: “audit”, “scope”, “privacy”, “pricing”</span>
+        <span class="miniNote">Fast, static, lightweight</span>
       </div>
     </div>
   </div>
 
   <div class="modal" id="modal" aria-hidden="true">
-    <div class="modalBox" role="dialog" aria-modal="true" aria-label="Details">
+    <div class="modalBackdrop"></div>
+    <div class="modalPanel" role="dialog" aria-modal="true">
       <div class="modalTop">
-        <b id="modalTitle">Details</b>
-        <button class="x" id="modalClose" aria-label="Close">✕</button>
+        <div class="modalTitle" id="modalTitle">Details</div>
+        <button class="modalClose" id="modalClose" type="button" aria-label="Close">✕</button>
       </div>
       <div class="modalBody" id="modalBody"></div>
     </div>
   </div>
 
-  <div class="cookie" id="cookie" aria-hidden="true">
-    <div class="cookieBox" role="dialog" aria-modal="true" aria-label="Cookie banner">
-      <div class="cookieTop">
-        <b>Cookies & privacy</b>
-        <button class="x" onclick="hideCookie()" aria-label="Close">✕</button>
-      </div>
-      <div class="cookieBody">
-        <p style="margin:0">This site is static and lightweight. We store your theme preference and cookie choice. If analytics are added later, we’ll update this notice.</p>
-        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px">
-          <button class="btn btnPrimary magnetic" id="cookieAccept">Accept all (future)</button>
-          <button class="btn btnGhost magnetic" id="cookieEssential">Essential only</button>
-          <button class="btn btnGhost magnetic" id="cookieManage">Manage</button>
+  <main class="topPad">
+
+<section class="section">
+  <div class="container">
+    <div class="card reveal">
+      <div class="cardInner">
+        <div class="badgeRow">
+          <span class="badge"><span class="dot"></span>Contact</span>
+          <span class="badge">Worldwide · US + EU</span>
+          <span class="badge">info@nexoid.dev</span>
         </div>
-        <div class="smallNote">See details in <a href="privacy.html" style="text-decoration:underline">Privacy Policy</a>.</div>
+        <h1 style="margin-top:12px">Let’s build something that feels expensive.</h1>
+        <p class="lead">Send a short brief — or generate a scope draft below and copy it into your email.</p>
+      </div>
+    </div>
+
+    <div class="section split">
+      <div class="panel reveal">
+        <div class="panelInner">
+          <h2>Quick inquiry</h2>
+          <p>We’ll reply from <b>info@nexoid.dev</b>. No spam, no nonsense.</p>
+
+          <form id="contactForm" action="mailto:info@nexoid.dev" method="post" enctype="text/plain">
+            <div class="formGrid">
+              <div>
+                <label>Your name</label>
+                <input name="name" placeholder="Jane Doe" />
+              </div>
+              <div>
+                <label>Business / website</label>
+                <input name="business" placeholder="Example Dental — example.com" />
+              </div>
+            </div>
+            <div style="margin-top:12px">
+              <label>What do you need?</label>
+              <textarea id="inquiry" name="message" placeholder="What you do, what you sell, where you operate, what ‘success’ means…"></textarea>
+            </div>
+            <div style="margin-top:12px; display:flex; gap:12px; flex-wrap:wrap">
+              <button class="btn primary" type="submit"><span class="btnIcon">↗</span>Email us</button>
+              <button class="btn" type="button" id="book" onclick="location.href='contact.html#scope'"><span class="btnIcon">◎</span>Generate scope</button>
+            </div>
+          </form>
+
+          <div class="hr"></div>
+          <div class="miniNote">Prefer a call? Start with a 15–20 min audit call after email intro.</div>
+        </div>
+      </div>
+
+      <div class="panel reveal" id="scope">
+        <div class="panelInner">
+          <h2>Scope builder</h2>
+          <p>Generate a scope draft (not a contract). Copy it, edit it, send it.</p>
+
+          <form id="scopeForm">
+            <div class="formGrid">
+              <div>
+                <label>Client / business name</label>
+                <input name="client" placeholder="Acme Dental" />
+              </div>
+              <div>
+                <label>Business type</label>
+                <input name="type" placeholder="Dentist / Restaurant / Law firm…" />
+              </div>
+            </div>
+
+            <div style="margin-top:12px" class="formGrid">
+              <div>
+                <label>Primary goal</label>
+                <select name="goal">
+                  <option value="More calls / bookings">More calls / bookings</option>
+                  <option value="Rank higher on Google">Rank higher on Google</option>
+                  <option value="Look premium / trustworthy">Look premium / trustworthy</option>
+                  <option value="Automate lead handling">Automate lead handling</option>
+                </select>
+              </div>
+              <div>
+                <label>Timeline target</label>
+                <select name="timeline">
+                  <option value="ASAP (1–2 weeks)">ASAP (1–2 weeks)</option>
+                  <option value="2–4 weeks">2–4 weeks</option>
+                  <option value="Flexible">Flexible</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="margin-top:12px">
+              <label>Package</label>
+              <select name="package">
+                <option value="Starter — premium landing / mini-site">Starter — premium landing / mini-site</option>
+                <option value="Business — multi-page trust + rankings">Business — multi-page trust + rankings</option>
+                <option value="Growth — site + systems (integrations/automation)">Growth — site + systems (integrations/automation)</option>
+              </select>
+            </div>
+
+            <div style="margin-top:12px">
+              <label>Add-ons (optional)</label>
+              <div class="checkRow">
+                <label class="check"><input type="checkbox" name="addon" value="SEO (optional)">SEO</label>
+                <label class="check"><input type="checkbox" name="addon" value="Google Business optimization (optional)">Google Business</label>
+                <label class="check"><input type="checkbox" name="addon" value="Automation workflows (optional)">Automations</label>
+                <label class="check"><input type="checkbox" name="addon" value="Integrations (optional)">Integrations</label>
+                <label class="check"><input type="checkbox" name="addon" value="Maintenance plan (recommended)">Maintenance</label>
+              </div>
+            </div>
+
+            <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap">
+              <button class="btn primary" type="submit"><span class="btnIcon">◎</span>Generate</button>
+              <button class="btn" type="button" id="scopeCopy"><span class="btnIcon">⎘</span>Copy</button>
+              <button class="btn ghost" type="button" id="scopeDownload"><span class="btnIcon">↓</span>Download</button>
+            </div>
+          </form>
+
+          <div class="hr"></div>
+          <div class="pre" id="scopeOutput">Click “Generate” to produce a scope draft…</div>
+        </div>
       </div>
     </div>
   </div>
+</section>
 
-  <header class="nav">
-    <div class="wrap">
-      <div class="navInner">
-        <a class="brand" href="index.html" aria-label="Nexxoid home">
+  </main>
+
+  <div class="footer">
+    <div class="container footerGrid">
+      <div style="max-width:520px">
+        <div class="brand">
           <div class="logo" aria-hidden="true"></div>
-          <div><b>Nexxoid</b><small>websites + growth systems</small></div>
-        </a>
-
-        <nav class="menu" aria-label="Primary">
-          <a href="services.html">Services</a>
-          <a href="work.html">Work</a>
-          <a href="pricing.html">Pricing</a>
-          <a href="contact.html" class="active">Contact</a>
-          <a href="privacy.html">Privacy</a>
-        </nav>
-
-        <div class="right">
-          <button class="pill" id="openPalette" title="Open command palette (Ctrl+K)"><span>Command</span><span class="kbd">Ctrl K</span></button>
-          <button class="pill" id="themeToggle" title="Toggle theme"><span>Theme:</span><span id="themeName">Neon</span></button>
-          <button class="hamburger" id="openDrawer" aria-label="Open menu">☰</button>
+          <div class="brandText"><b>Nexxoid</b><small>Worldwide — US + EU</small></div>
         </div>
-      </div>
-    </div>
-  </header>
-<script>
-window.NEXXOID_COMMANDS = [{"id": "audit", "title": "Book a 15\u2011min audit", "hint": "Contact page", "run": "(()=>{location.href='contact.html#book';})"}, {"id": "scope", "title": "Jump to scope builder", "hint": "Draft a mini-contract", "run": "(()=>{location.hash='#scope'; document.getElementById('scope')?.scrollIntoView({behavior:'smooth'});})"}, {"id": "services", "title": "Go to Services", "hint": "What we offer", "run": "(()=>{location.href='services.html';})"}, {"id": "work", "title": "Go to Work", "hint": "Sample case studies", "run": "(()=>{location.href='work.html';})"}, {"id": "pricing", "title": "Go to Pricing", "hint": "Packages + add-ons", "run": "(()=>{location.href='pricing.html';})"}, {"id": "contact", "title": "Go to Contact", "hint": "Send inquiry / scope draft", "run": "(()=>{location.href='contact.html';})"}, {"id": "privacy", "title": "Go to Privacy", "hint": "Privacy + cookies", "run": "(()=>{location.href='privacy.html';})"}, {"id": "theme", "title": "Toggle theme", "hint": "Neon \u2194 Void", "run": "(()=>{document.getElementById('themeToggle')?.click();})"}].map(c=>({...c, run: eval(c.run)}));
-</script>
-
-<main>
-  <section class="hero" id="book">
-    <div class="wrap">
-      <div class="tag reveal"><span class="tagDot" aria-hidden="true"></span><span>Contact · info@nexoid.dev · fast response</span></div>
-      <h1 class="reveal" style="transition-delay:.06s">Let’s make it look legitimate.</h1>
-      <p class="sub reveal" style="transition-delay:.12s">Quick path: request an audit. We’ll reply with a clear scope and next steps. No bloated proposals.</p>
-      <div class="ctaRow reveal" style="transition-delay:.18s">
-        <a class="btn btnPrimary magnetic" href="mailto:info@nexoid.dev?subject=%5BNexxoid%5D%2015-min%20audit%20request&body=Hi%20Nexxoid%2C%0D%0A%0D%0AI%20want%20a%2015-minute%20audit.%20Here%20is%20my%20site%20(or%20business)%3A%0D%0A%0D%0AGoal%3A%0D%0ABudget%20range%3A%0D%0ATimeline%3A%0D%0A%0D%0AThanks%21">Email for audit</a>
-        <a class="btn btnGhost magnetic" href="#inquiry">Send inquiry</a>
-        <a class="btn btnGhost magnetic" href="#scope">Scope builder</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="inquiry">
-    <div class="wrap">
-      <div class="kicker reveal">Inquiry</div>
-      <h2 class="reveal" style="transition-delay:.06s">Tell us what you’re building.</h2>
-      <p class="lead reveal" style="transition-delay:.12s">This generates an email draft to <a href="mailto:info@nexoid.dev" style="text-decoration:underline">info@nexoid.dev</a>. (Static site: no backend.)</p>
-
-      <div class="gridHero" style="grid-template-columns:1fr 1fr; gap:14px; margin-top:18px">
-        <form class="form reveal" id="contactForm">
-          <div class="formRow">
-            <input name="name" placeholder="Your name" required />
-            <input name="company" placeholder="Company / brand" />
-            <input name="website" placeholder="Current website (optional)" />
-            <select name="goal">
-              <option value="More leads">Goal: More leads</option>
-              <option value="Better trust / premium look">Goal: Better trust / premium look</option>
-              <option value="Local SEO / Google Maps">Goal: Local SEO / Google Maps</option>
-              <option value="Automation / integrations">Goal: Automation / integrations</option>
-              <option value="Other">Goal: Other</option>
-            </select>
-            <select name="budget">
-              <option value="Under $1k">Budget: Under $1k</option>
-              <option value="$1k–$3k">$1k–$3k</option>
-              <option value="$3k–$6k">$3k–$6k</option>
-              <option value="$6k+">$6k+</option>
-              <option value="Not sure yet">Not sure yet</option>
-            </select>
-            <textarea name="message" placeholder="Short description (services, location, what you sell, who you target)…"></textarea>
-            <button class="btn btnPrimary magnetic" type="submit">Generate email</button>
-            <div class="smallNote">Tip: If you have photos/logo, mention it. If not, we can start with clean placeholders.</div>
-          </div>
-        </form>
-
-        <div class="heroCard reveal" style="min-height:360px">
-          <div class="miniBar"><div class="miniLeft"><div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div><span>nexxoid://outreach</span></div><div class="miniRight"><span class="chip">Cold outreach</span><span class="chip">Legit</span></div></div>
-          <div class="heroViz">
-            <div class="terminal">
-              <div class="termLine"><em>Cold outreach script (email)</em></div>
-              <div class="termLine">Subject: quick website audit for {business}</div>
-              <div class="termLine" style="margin-top:8px">Hi {name},</div>
-              <div class="termLine">I noticed your site could improve:</div>
-              <div class="termLine">- clarity of offer</div>
-              <div class="termLine">- Google Maps visibility</div>
-              <div class="termLine">- speed on mobile</div>
-              <div class="termLine" style="margin-top:8px">Want a free 15‑min audit + simple scope + price?</div>
-              <div class="termLine">Reply “yes” and I’ll send it over.</div>
-            </div>
-            <div class="vizBottom"><a class="pillMini magnetic" href="#scope">Use scope builder →</a><a class="pillMini magnetic" href="pricing.html">Use packages →</a></div>
-          </div>
+        <div style="margin-top:10px; color: rgba(240,244,255,.68); line-height:1.6">
+          Fast builds. Premium feel. Clear outcomes. We design and ship conversion-first websites,
+          then optionally add SEO, Google Business optimization, integrations and automation.
         </div>
+        <div style="margin-top:10px" class="miniNote">Contact: <a href="mailto:info@nexoid.dev">info@nexoid.dev</a></div>
+        <div style="margin-top:8px; color: rgba(240,244,255,.52); font-size: 12px">© 2025 Nexxoid. All rights reserved.</div>
       </div>
-    </div>
-  </section>
-
-  <section id="scope">
-    <div class="wrap">
-      <div class="kicker reveal">Scope builder</div>
-      <h2 class="reveal" style="transition-delay:.06s">Mini‑contract / scope draft generator.</h2>
-      <p class="lead reveal" style="transition-delay:.12s">Pick a package, add-ons, timeline, and send a clean scope (copy or download).</p>
-
-      <div class="gridHero" style="grid-template-columns:1fr 1fr; gap:14px; margin-top:18px">
-        <form class="form reveal" id="scopeForm">
-          <div class="formRow">
-            <select name="package">
-              <option value="Launch (landing page)">Package: Launch (landing page)</option>
-              <option value="Growth (3–6 page site)" selected>Package: Growth (3–6 page site)</option>
-              <option value="Scale (site + integrations/automation)">Package: Scale (site + integrations/automation)</option>
-            </select>
-            <select name="timeline">
-              <option value="7–10 business days">Timeline: 7–10 business days</option>
-              <option value="10–15 business days" selected>Timeline: 10–15 business days</option>
-              <option value="2–4 weeks">Timeline: 2–4 weeks</option>
-            </select>
-            <select name="pages">
-              <option value="1 (single-page)">Estimated pages: 1</option>
-              <option value="3–6" selected>Estimated pages: 3–6</option>
-              <option value="6–12">Estimated pages: 6–12</option>
-            </select>
-
-            <div style="display:grid; gap:8px; margin-top:4px">
-              <label style="color:var(--muted); font-size:13px"><input type="checkbox" name="addons" value="Google Business optimization" /> Google Business optimization</label>
-              <label style="color:var(--muted); font-size:13px"><input type="checkbox" name="addons" value="SEO baseline (technical + on-page)" /> SEO baseline</label>
-              <label style="color:var(--muted); font-size:13px"><input type="checkbox" name="addons" value="Automation (form→CRM/WhatsApp/email)" /> Automation (lead pipeline)</label>
-              <label style="color:var(--muted); font-size:13px"><input type="checkbox" name="addons" value="Integration (booking/payments/API)" /> Integration (booking/payments/API)</label>
-              <label style="color:var(--muted); font-size:13px"><input type="checkbox" name="addons" value="Maintenance (monthly)" /> Maintenance (monthly)</label>
-            </div>
-
-            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px">
-              <select name="currency"><option value="USD" selected>USD</option><option value="EUR">EUR</option></select>
-              <input name="price" placeholder="Estimated fee (optional)" />
-            </div>
-
-            <textarea name="notes" placeholder="Notes (industry, requirements, hosting, content)…"></textarea>
-
-            <div style="display:flex; gap:10px; flex-wrap:wrap">
-              <button class="btn btnPrimary magnetic" type="button" id="scopeCopy">Copy scope</button>
-              <button class="btn btnGhost magnetic" type="button" id="scopeDownload">Download .txt</button>
-            </div>
-            <div class="smallNote">Template only. Update legal terms when you have company info.</div>
-          </div>
-        </form>
-
-        <div class="heroCard reveal" style="min-height:520px">
-          <div class="miniBar"><div class="miniLeft"><div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div><span>nexxoid://scope-output</span></div><div class="miniRight"><span class="chip">Copy</span><span class="chip">Download</span></div></div>
-          <div class="heroViz">
-            <div class="terminal" style="height:100%; overflow:auto"><pre class="termLine" id="scopeOutput" style="margin:0"></pre></div>
-            <div class="vizBottom"><a class="pillMini magnetic" href="privacy.html">Privacy →</a><a class="pillMini magnetic" href="pricing.html">Pricing →</a></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
-
-  <footer>
-    <div class="wrap">
-      <div class="footGrid">
-        <div>
-          <div class="brand" style="gap:12px">
-            <div class="logo" aria-hidden="true"></div>
-            <div><b>Nexxoid</b><small>Worldwide — US + EU</small></div>
-          </div>
-          <div class="message">Fast builds. Premium feel. Clear outcomes.</div>
-          <div style="margin-top:10px; color: var(--muted); font-size: 13px; line-height: 1.6; max-width: 70ch">
-            Small, senior team — built for speed. We design and ship conversion-first websites, then optionally add SEO, Google Business optimization, integrations and automation.
-          </div>
-          <div style="margin-top:10px; color: var(--muted2); font-size: 12px">
-            Contact: <a href="mailto:info@nexoid.dev" style="text-decoration:underline">info@nexoid.dev</a>
-          </div>
-        </div>
+      <div>
         <div class="footLinks">
           <a href="services.html">Services</a>
           <a href="work.html">Work</a>
@@ -276,14 +241,24 @@ window.NEXXOID_COMMANDS = [{"id": "audit", "title": "Book a 15\u2011min audit", 
           <a href="contact.html">Contact</a>
           <a href="privacy.html">Privacy</a>
         </div>
-      </div>
-      <div style="margin-top:18px; color: var(--muted2); font-size: 12px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap">
-        <span>© 2025 Nexxoid. All rights reserved.</span>
-        <span>Built to feel expensive. Built to load fast.</span>
+        <div style="margin-top:10px" class="miniNote">Built to feel expensive. Built to load fast.</div>
       </div>
     </div>
-  </footer>
-  <script>window.NEXXOID_EMAIL = "info@nexoid.dev";</script>
+  </div>
+
+  <div class="cookie" id="cookie">
+    <div class="cookieInner">
+      <div class="cookieCard">
+        <p><b>Cookies & privacy</b><br/>We store only your theme preference and cookie choice. If analytics are added later, we’ll update this notice.</p>
+        <div class="cookieBtns">
+          <button class="btn primary" id="cookieAccept" type="button">Accept all (future)</button>
+          <button class="btn" id="cookieEssential" type="button">Essential only</button>
+          <button class="btn ghost" id="cookieManage" type="button">Manage</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="assets/app.js" defer></script>
 </body>
 </html>

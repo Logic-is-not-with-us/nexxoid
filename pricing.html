@@ -1,62 +1,78 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="neon">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Pricing — Nexxoid</title>
-  <meta name="description" content="Transparent, simple packages for small businesses. Optional SEO, Google Business optimization, integrations and automation." />
-  <meta name="theme-color" content="#05060a" />
-  <meta property="og:title" content="Pricing — Nexxoid" />
-  <meta property="og:description" content="Transparent, simple packages for small businesses. Optional SEO, Google Business optimization, integrations and automation." />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Nexxoid" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <title>Nexxoid — Pricing</title>
+  <meta name="description" content="Premium websites + growth systems for small businesses." />
+  <meta name="theme-color" content="#05060d" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/style.css" />
-  <!-- Optional premium fonts; remove for zero external calls -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    body{font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial}
-    h1,h2,h3,b{font-family: Space Grotesk, Inter, ui-sans-serif, system-ui}
-  </style>
-  <link rel="canonical" href="https://nexxoid.com/pricing.html" />
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Nexxoid", "url": "https://nexxoid.com/", "contactPoint": [{"@type": "ContactPoint", "contactType": "sales", "email": "info@nexoid.dev", "availableLanguage": ["en"]}], "areaServed": ["US", "EU"]}</script>
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Nexxoid", "url": "https://nexxoid.com/", "inLanguage": "en"}</script>
 </head>
 <body>
-  <div class="progress" id="progress"></div>
-  <canvas id="fx"></canvas>
-  <div class="grain"></div>
-  <div class="cursorGlow" id="cursorGlow"></div>
+  <div id="progress"></div>
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <div class="noise" aria-hidden="true"></div>
+  <div id="cursorGlow" aria-hidden="true"></div>
+
+  <div class="nav">
+    <div class="container navInner">
+      <a class="brand" href="index.html" aria-label="Nexxoid home">
+        <div class="logo" aria-hidden="true"></div>
+        <div class="brandText"><b>Nexxoid</b><small>websites + growth systems</small></div>
+      </a>
+
+      <div class="navLinks" aria-label="Primary">
+        <a href="services.html" class="">Services</a>
+        <a href="work.html" class="">Work</a>
+        <a href="pricing.html" class="active">Pricing</a>
+        <a href="contact.html" class="">Contact</a>
+        <a href="privacy.html" class="">Privacy</a>
+      </div>
+
+      <div class="navRight">
+        <button class="pill" id="openPalette" type="button"><span>Command</span> <span class="kbd">Ctrl K</span></button>
+        <button class="pill" id="themeToggle" type="button"><span>Theme:</span> <span id="themeName">Neon</span></button>
+        <button class="hamburger" id="openDrawer" type="button" aria-label="Open menu"></button>
+      </div>
+    </div>
+  </div>
 
   <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawerBackdrop"></div>
     <div class="drawerPanel" role="dialog" aria-modal="true" aria-label="Menu">
       <div class="drawerTop">
-        <a class="brand" href="index.html" aria-label="Nexxoid home">
+        <div class="brand">
           <div class="logo" aria-hidden="true"></div>
-          <div><b>Nexxoid</b><small>websites + growth systems</small></div>
-        </a>
-        <button class="hamburger" id="closeDrawer" aria-label="Close menu">✕</button>
+          <div class="brandText"><b>Nexxoid</b><small>websites + growth systems</small></div>
+        </div>
+        <button class="hamburger" id="closeDrawer" type="button" aria-label="Close menu"></button>
       </div>
+
       <div class="drawerNav">
         <a href="services.html" data-close-drawer>Services</a>
         <a href="work.html" data-close-drawer>Work</a>
         <a href="pricing.html" data-close-drawer>Pricing</a>
         <a href="contact.html" data-close-drawer>Contact</a>
         <a href="privacy.html" data-close-drawer>Privacy</a>
+
+        <div class="hr"></div>
+        <button class="pill" id="openPaletteMobile" type="button" style="justify-content:space-between"><span>Command</span><span class="kbd">Ctrl K</span></button>
+        <button class="pill" id="themeToggleMobile" type="button" style="justify-content:space-between"><span>Theme</span><span class="kbd">Neon/Void</span></button>
       </div>
-      <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
-        <button class="pill" id="openPaletteMobile" style="flex:1"><span>Command</span> <span class="kbd">Ctrl K</span></button>
-        <button class="pill" id="themeToggleMobile" style="flex:1"><span>Theme</span> <span class="kbd">Neon/Void</span></button>
-      </div>
-      <div style="margin-top:14px; color: rgba(234,240,255,.6); font-size: 12px; line-height:1.5">
-        Tip: Use Ctrl+K to jump around quickly. Tap Work cards to open the blueprint.
+
+      <div style="margin-top:14px; color: rgba(240,244,255,.62); font-size: 12px; line-height:1.5">
+        Tip: Use Ctrl+K to jump. Tap a Work card to open a blueprint.
       </div>
     </div>
   </div>
 
   <div class="palette" id="palette" aria-hidden="true">
+    <div class="paletteBackdrop"></div>
     <div class="paletteBox" role="dialog" aria-modal="true" aria-label="Command Palette">
       <div class="paletteTop">
         <span class="kbd">Ctrl</span><span class="kbd">K</span>
@@ -65,165 +81,128 @@
       <div class="paletteList" id="paletteList"></div>
       <div class="paletteHint">
         <span>↑ ↓ to select · Enter to go · Esc to close</span>
-        <span>Try: “audit”, “scope”, “privacy”, “pricing”</span>
+        <span class="miniNote">Fast, static, lightweight</span>
       </div>
     </div>
   </div>
 
   <div class="modal" id="modal" aria-hidden="true">
-    <div class="modalBox" role="dialog" aria-modal="true" aria-label="Details">
+    <div class="modalBackdrop"></div>
+    <div class="modalPanel" role="dialog" aria-modal="true">
       <div class="modalTop">
-        <b id="modalTitle">Details</b>
-        <button class="x" id="modalClose" aria-label="Close">✕</button>
+        <div class="modalTitle" id="modalTitle">Details</div>
+        <button class="modalClose" id="modalClose" type="button" aria-label="Close">✕</button>
       </div>
       <div class="modalBody" id="modalBody"></div>
     </div>
   </div>
 
-  <div class="cookie" id="cookie" aria-hidden="true">
-    <div class="cookieBox" role="dialog" aria-modal="true" aria-label="Cookie banner">
-      <div class="cookieTop">
-        <b>Cookies & privacy</b>
-        <button class="x" onclick="hideCookie()" aria-label="Close">✕</button>
-      </div>
-      <div class="cookieBody">
-        <p style="margin:0">This site is static and lightweight. We store your theme preference and cookie choice. If analytics are added later, we’ll update this notice.</p>
-        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px">
-          <button class="btn btnPrimary magnetic" id="cookieAccept">Accept all (future)</button>
-          <button class="btn btnGhost magnetic" id="cookieEssential">Essential only</button>
-          <button class="btn btnGhost magnetic" id="cookieManage">Manage</button>
+  <main class="topPad">
+
+<section class="section">
+  <div class="container">
+    <div class="card reveal">
+      <div class="cardInner">
+        <div class="badgeRow">
+          <span class="badge"><span class="dot"></span>Pricing</span>
+          <span class="badge">US/EU market positioning</span>
+          <span class="badge">Add-ons are optional</span>
         </div>
-        <div class="smallNote">See details in <a href="privacy.html" style="text-decoration:underline">Privacy Policy</a>.</div>
+        <h1 style="margin-top:12px">Above average build quality. Reasonable ongoing cost.</h1>
+        <p class="lead">
+          You said: above or same as average US pricing, with more polish and systems.
+          These are starter packages — final quote depends on scope.
+        </p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="pricingGrid">
+        <div class="panel reveal price">
+          <h3>Starter</h3>
+          <div class="money">$1,200+</div>
+          <p style="color: rgba(240,244,255,.64); margin:6px 0 0">Premium single-page / mini-site</p>
+          <ul>
+            <li>Hero + offer clarity + CTA</li>
+            <li>Mobile-first, fast load</li>
+            <li>Basic SEO structure</li>
+          </ul>
+          <div class="mini">Timeline: ~7–10 days</div>
+          <div class="cta"><a class="btn primary" href="contact.html"><span class="btnIcon">↗</span>Start</a></div>
+        </div>
+
+        <div class="panel reveal price" style="border-color: rgba(0,229,255,.22)">
+          <h3>Business</h3>
+          <div class="money">$2,400+</div>
+          <p style="color: rgba(240,244,255,.64); margin:6px 0 0">Multi-page site for rankings + trust</p>
+          <ul>
+            <li>Service pages</li>
+            <li>Stronger conversion flow</li>
+            <li>Local SEO + schema</li>
+          </ul>
+          <div class="mini">Timeline: ~10–14 days</div>
+          <div class="cta"><a class="btn primary" href="contact.html"><span class="btnIcon">↗</span>Start</a></div>
+        </div>
+
+        <div class="panel reveal price">
+          <h3>Growth</h3>
+          <div class="money">$4,500+</div>
+          <p style="color: rgba(240,244,255,.64); margin:6px 0 0">Website + systems (optional layers)</p>
+          <ul>
+            <li>Integrations / automation</li>
+            <li>Tracking + funnels</li>
+            <li>Review flow, lead routing</li>
+          </ul>
+          <div class="mini">Timeline: ~14–21 days</div>
+          <div class="cta"><a class="btn primary" href="contact.html"><span class="btnIcon">↗</span>Start</a></div>
+        </div>
+      </div>
+
+      <div class="panel reveal" style="margin-top:14px">
+        <div class="panelInner">
+          <h2>Add-ons (optional)</h2>
+          <div class="workGrid">
+            <div class="panel"><div class="panelInner">
+              <b>SEO management</b>
+              <p style="margin:6px 0 0; color: rgba(240,244,255,.66)">Content iteration + technical checks.</p>
+              <div class="miniNote">From $250/mo</div>
+            </div></div>
+            <div class="panel"><div class="panelInner">
+              <b>Google Business management</b>
+              <p style="margin:6px 0 0; color: rgba(240,244,255,.66)">Posts, photos, categories, review strategy.</p>
+              <div class="miniNote">From $120/mo</div>
+            </div></div>
+            <div class="panel"><div class="panelInner">
+              <b>Automations / Integrations</b>
+              <p style="margin:6px 0 0; color: rgba(240,244,255,.66)">Scoped per workflow — no random complexity.</p>
+              <div class="miniNote">Quoted per project</div>
+            </div></div>
+          </div>
+          <div class="hr"></div>
+          <div class="miniNote">Transparent truth: if your offer is unclear, no SEO “hack” will save it. We fix clarity first.</div>
+        </div>
       </div>
     </div>
   </div>
+</section>
 
-  <header class="nav">
-    <div class="wrap">
-      <div class="navInner">
-        <a class="brand" href="index.html" aria-label="Nexxoid home">
+  </main>
+
+  <div class="footer">
+    <div class="container footerGrid">
+      <div style="max-width:520px">
+        <div class="brand">
           <div class="logo" aria-hidden="true"></div>
-          <div><b>Nexxoid</b><small>websites + growth systems</small></div>
-        </a>
-
-        <nav class="menu" aria-label="Primary">
-          <a href="services.html">Services</a>
-          <a href="work.html">Work</a>
-          <a href="pricing.html" class="active">Pricing</a>
-          <a href="contact.html">Contact</a>
-          <a href="privacy.html">Privacy</a>
-        </nav>
-
-        <div class="right">
-          <button class="pill" id="openPalette" title="Open command palette (Ctrl+K)"><span>Command</span><span class="kbd">Ctrl K</span></button>
-          <button class="pill" id="themeToggle" title="Toggle theme"><span>Theme:</span><span id="themeName">Neon</span></button>
-          <button class="hamburger" id="openDrawer" aria-label="Open menu">☰</button>
+          <div class="brandText"><b>Nexxoid</b><small>Worldwide — US + EU</small></div>
         </div>
-      </div>
-    </div>
-  </header>
-<script>
-window.NEXXOID_COMMANDS = [{"id": "audit", "title": "Book a 15\u2011min audit", "hint": "Contact page", "run": "(()=>{location.href='contact.html#book';})"}, {"id": "addons", "title": "Jump to add-ons", "hint": "Automation + integrations", "run": "(()=>{location.hash='#addons'; document.getElementById('addons')?.scrollIntoView({behavior:'smooth'});})"}, {"id": "services", "title": "Go to Services", "hint": "What we offer", "run": "(()=>{location.href='services.html';})"}, {"id": "work", "title": "Go to Work", "hint": "Sample case studies", "run": "(()=>{location.href='work.html';})"}, {"id": "pricing", "title": "Go to Pricing", "hint": "Packages + add-ons", "run": "(()=>{location.href='pricing.html';})"}, {"id": "contact", "title": "Go to Contact", "hint": "Send inquiry / scope draft", "run": "(()=>{location.href='contact.html';})"}, {"id": "privacy", "title": "Go to Privacy", "hint": "Privacy + cookies", "run": "(()=>{location.href='privacy.html';})"}, {"id": "theme", "title": "Toggle theme", "hint": "Neon \u2194 Void", "run": "(()=>{document.getElementById('themeToggle')?.click();})"}].map(c=>({...c, run: eval(c.run)}));
-</script>
-
-<main>
-  <section class="hero">
-    <div class="wrap">
-      <div class="tag reveal"><span class="tagDot" aria-hidden="true"></span><span>Pricing · Above-average quality · Simple scopes</span></div>
-      <h1 class="reveal" style="transition-delay:.06s">Simple packages. Serious build quality.</h1>
-      <p class="sub reveal" style="transition-delay:.12s">Base packages are clean. Add-ons are scoped after the audit so you don’t overpay for “nice-to-have” tools.</p>
-      <div class="ctaRow reveal" style="transition-delay:.18s">
-        <a class="btn btnPrimary magnetic" href="contact.html#book">Book a 15‑min audit</a>
-        <a class="btn btnGhost magnetic" href="contact.html#scope">Generate scope draft</a>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="kicker reveal">Packages</div>
-      <h2 class="reveal" style="transition-delay:.06s">Pick a lane, then add options.</h2>
-      <p class="lead reveal" style="transition-delay:.12s">Prices are “from” — the audit locks the final scope.</p>
-
-      <div class="pricing">
-        <article class="price reveal">
-          <h3>Launch</h3><div class="pLead">One-page conversion landing. Fast to build, fast to deploy.</div>
-          <div class="amount">$1,200<span>+</span></div>
-          <div class="list">
-            <div class="li"><span class="check">✓</span><span>Premium UI + motion polish</span></div>
-            <div class="li"><span class="check">✓</span><span>Offer + CTA structure</span></div>
-            <div class="li"><span class="check">✓</span><span>Basic SEO baseline</span></div>
-            <div class="li"><span class="check">✓</span><span>Contact form → email</span></div>
-          </div>
-          <div class="ctaRow" style="margin-top:14px"><a class="btn btnGhost magnetic" href="contact.html#scope">Draft scope</a></div>
-        </article>
-
-        <article class="price featured reveal" style="transition-delay:.06s">
-          <div class="ribbon">Most popular</div>
-          <h3>Growth</h3><div class="pLead">3–6 pages. Designed for trust + search visibility.</div>
-          <div class="amount">$2,500<span>+</span></div>
-          <div class="list">
-            <div class="li"><span class="check">✓</span><span>Everything in Launch</span></div>
-            <div class="li"><span class="check">✓</span><span>Service pages for SEO</span></div>
-            <div class="li"><span class="check">✓</span><span>FAQ + proof stack</span></div>
-            <div class="li"><span class="check">✓</span><span>Core Web Vitals performance pass</span></div>
-          </div>
-          <div class="ctaRow" style="margin-top:14px"><a class="btn btnPrimary magnetic" href="contact.html#book">Book audit</a></div>
-        </article>
-
-        <article class="price reveal" style="transition-delay:.12s">
-          <h3>Scale</h3><div class="pLead">For businesses that want SEO content, integrations, and automation.</div>
-          <div class="amount">$4,500<span>+</span></div>
-          <div class="list">
-            <div class="li"><span class="check">✓</span><span>Multi-page site + content map</span></div>
-            <div class="li"><span class="check">✓</span><span>GBP optimization (optional)</span></div>
-            <div class="li"><span class="check">✓</span><span>Integrations scoped + implemented</span></div>
-            <div class="li"><span class="check">✓</span><span>Automation pipeline (optional)</span></div>
-          </div>
-          <div class="ctaRow" style="margin-top:14px"><a class="btn btnGhost magnetic" href="contact.html#scope">Draft scope</a></div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="addons">
-    <div class="wrap">
-      <div class="kicker reveal">Optional add‑ons</div>
-      <h2 class="reveal" style="transition-delay:.06s">Only pay for what you actually need.</h2>
-      <p class="lead reveal" style="transition-delay:.12s">Modules priced after audit depending on tools.</p>
-
-      <div class="cards">
-        <div class="card reveal" data-tilt><div class="cardGlow"></div><div class="badge"><span class="mini">◎</span><span>Google Business</span></div><h3>Maps visibility pack</h3><p>Cleanup + categories + services + review plan. <b>From $350</b></p></div>
-        <div class="card reveal" data-tilt style="transition-delay:.06s"><div class="cardGlow"></div><div class="badge"><span class="mini">⟡</span><span>SEO</span></div><h3>Technical + on‑page baseline</h3><p>Structure + schema + targeting. <b>From $600</b></p></div>
-        <div class="card reveal" data-tilt style="transition-delay:.12s"><div class="cardGlow"></div><div class="badge"><span class="mini">⛭</span><span>Automations</span></div><h3>Lead pipeline</h3><p>Forms → email/WhatsApp/CRM + reminders. <b>From $900</b></p></div>
-        <div class="card reveal" data-tilt><div class="cardGlow"></div><div class="badge"><span class="mini">⇄</span><span>Integrations</span></div><h3>API + third‑party tools</h3><p>Scheduling, payments, booking, menus, catalogs. <b>Quote after audit</b></p></div>
-        <div class="card reveal" data-tilt style="transition-delay:.06s"><div class="cardGlow"></div><div class="badge"><span class="mini">🛡</span><span>Maintenance</span></div><h3>Monthly care</h3><p>Updates, small edits, monitoring. <b>From $150/mo</b></p></div>
-        <div class="card reveal" data-tilt style="transition-delay:.12s"><div class="cardGlow"></div><div class="badge"><span class="mini">★</span><span>Copy</span></div><h3>Messaging help</h3><p>Offer clarity + rewriting sections for conversion. <b>From $350</b></p></div>
-      </div>
-
-      <div class="reveal" style="margin-top:16px; transition-delay:.14s">
-        <div class="codeblock">Pricing note:\nKeep the base package clean.\nThen scope add-ons so clients don’t pay for fluff.</div>
-      </div>
-    </div>
-  </section>
-</main>
-
-  <footer>
-    <div class="wrap">
-      <div class="footGrid">
-        <div>
-          <div class="brand" style="gap:12px">
-            <div class="logo" aria-hidden="true"></div>
-            <div><b>Nexxoid</b><small>Worldwide — US + EU</small></div>
-          </div>
-          <div class="message">Fast builds. Premium feel. Clear outcomes.</div>
-          <div style="margin-top:10px; color: var(--muted); font-size: 13px; line-height: 1.6; max-width: 70ch">
-            Small, senior team — built for speed. We design and ship conversion-first websites, then optionally add SEO, Google Business optimization, integrations and automation.
-          </div>
-          <div style="margin-top:10px; color: var(--muted2); font-size: 12px">
-            Contact: <a href="mailto:info@nexoid.dev" style="text-decoration:underline">info@nexoid.dev</a>
-          </div>
+        <div style="margin-top:10px; color: rgba(240,244,255,.68); line-height:1.6">
+          Fast builds. Premium feel. Clear outcomes. We design and ship conversion-first websites,
+          then optionally add SEO, Google Business optimization, integrations and automation.
         </div>
+        <div style="margin-top:10px" class="miniNote">Contact: <a href="mailto:info@nexoid.dev">info@nexoid.dev</a></div>
+        <div style="margin-top:8px; color: rgba(240,244,255,.52); font-size: 12px">© 2025 Nexxoid. All rights reserved.</div>
+      </div>
+      <div>
         <div class="footLinks">
           <a href="services.html">Services</a>
           <a href="work.html">Work</a>
@@ -231,14 +210,24 @@ window.NEXXOID_COMMANDS = [{"id": "audit", "title": "Book a 15\u2011min audit", 
           <a href="contact.html">Contact</a>
           <a href="privacy.html">Privacy</a>
         </div>
-      </div>
-      <div style="margin-top:18px; color: var(--muted2); font-size: 12px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap">
-        <span>© 2025 Nexxoid. All rights reserved.</span>
-        <span>Built to feel expensive. Built to load fast.</span>
+        <div style="margin-top:10px" class="miniNote">Built to feel expensive. Built to load fast.</div>
       </div>
     </div>
-  </footer>
-  <script>window.NEXXOID_EMAIL = "info@nexoid.dev";</script>
+  </div>
+
+  <div class="cookie" id="cookie">
+    <div class="cookieInner">
+      <div class="cookieCard">
+        <p><b>Cookies & privacy</b><br/>We store only your theme preference and cookie choice. If analytics are added later, we’ll update this notice.</p>
+        <div class="cookieBtns">
+          <button class="btn primary" id="cookieAccept" type="button">Accept all (future)</button>
+          <button class="btn" id="cookieEssential" type="button">Essential only</button>
+          <button class="btn ghost" id="cookieManage" type="button">Manage</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="assets/app.js" defer></script>
 </body>
 </html>

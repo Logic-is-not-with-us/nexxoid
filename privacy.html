@@ -1,62 +1,78 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="neon">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Privacy — Nexxoid</title>
-  <meta name="description" content="Privacy Policy and Cookie Notice template for Nexxoid. Update with your legal entity details when available." />
-  <meta name="theme-color" content="#05060a" />
-  <meta property="og:title" content="Privacy — Nexxoid" />
-  <meta property="og:description" content="Privacy Policy and Cookie Notice template for Nexxoid. Update with your legal entity details when available." />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Nexxoid" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <title>Nexxoid — Privacy</title>
+  <meta name="description" content="Premium websites + growth systems for small businesses." />
+  <meta name="theme-color" content="#05060d" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/style.css" />
-  <!-- Optional premium fonts; remove for zero external calls -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    body{font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial}
-    h1,h2,h3,b{font-family: Space Grotesk, Inter, ui-sans-serif, system-ui}
-  </style>
-  <link rel="canonical" href="https://nexxoid.com/privacy.html" />
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Nexxoid", "url": "https://nexxoid.com/", "contactPoint": [{"@type": "ContactPoint", "contactType": "sales", "email": "info@nexoid.dev", "availableLanguage": ["en"]}], "areaServed": ["US", "EU"]}</script>
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Nexxoid", "url": "https://nexxoid.com/", "inLanguage": "en"}</script>
 </head>
 <body>
-  <div class="progress" id="progress"></div>
-  <canvas id="fx"></canvas>
-  <div class="grain"></div>
-  <div class="cursorGlow" id="cursorGlow"></div>
+  <div id="progress"></div>
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <div class="noise" aria-hidden="true"></div>
+  <div id="cursorGlow" aria-hidden="true"></div>
+
+  <div class="nav">
+    <div class="container navInner">
+      <a class="brand" href="index.html" aria-label="Nexxoid home">
+        <div class="logo" aria-hidden="true"></div>
+        <div class="brandText"><b>Nexxoid</b><small>websites + growth systems</small></div>
+      </a>
+
+      <div class="navLinks" aria-label="Primary">
+        <a href="services.html" class="">Services</a>
+        <a href="work.html" class="">Work</a>
+        <a href="pricing.html" class="">Pricing</a>
+        <a href="contact.html" class="">Contact</a>
+        <a href="privacy.html" class="active">Privacy</a>
+      </div>
+
+      <div class="navRight">
+        <button class="pill" id="openPalette" type="button"><span>Command</span> <span class="kbd">Ctrl K</span></button>
+        <button class="pill" id="themeToggle" type="button"><span>Theme:</span> <span id="themeName">Neon</span></button>
+        <button class="hamburger" id="openDrawer" type="button" aria-label="Open menu"></button>
+      </div>
+    </div>
+  </div>
 
   <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawerBackdrop"></div>
     <div class="drawerPanel" role="dialog" aria-modal="true" aria-label="Menu">
       <div class="drawerTop">
-        <a class="brand" href="index.html" aria-label="Nexxoid home">
+        <div class="brand">
           <div class="logo" aria-hidden="true"></div>
-          <div><b>Nexxoid</b><small>websites + growth systems</small></div>
-        </a>
-        <button class="hamburger" id="closeDrawer" aria-label="Close menu">✕</button>
+          <div class="brandText"><b>Nexxoid</b><small>websites + growth systems</small></div>
+        </div>
+        <button class="hamburger" id="closeDrawer" type="button" aria-label="Close menu"></button>
       </div>
+
       <div class="drawerNav">
         <a href="services.html" data-close-drawer>Services</a>
         <a href="work.html" data-close-drawer>Work</a>
         <a href="pricing.html" data-close-drawer>Pricing</a>
         <a href="contact.html" data-close-drawer>Contact</a>
         <a href="privacy.html" data-close-drawer>Privacy</a>
+
+        <div class="hr"></div>
+        <button class="pill" id="openPaletteMobile" type="button" style="justify-content:space-between"><span>Command</span><span class="kbd">Ctrl K</span></button>
+        <button class="pill" id="themeToggleMobile" type="button" style="justify-content:space-between"><span>Theme</span><span class="kbd">Neon/Void</span></button>
       </div>
-      <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
-        <button class="pill" id="openPaletteMobile" style="flex:1"><span>Command</span> <span class="kbd">Ctrl K</span></button>
-        <button class="pill" id="themeToggleMobile" style="flex:1"><span>Theme</span> <span class="kbd">Neon/Void</span></button>
-      </div>
-      <div style="margin-top:14px; color: rgba(234,240,255,.6); font-size: 12px; line-height:1.5">
-        Tip: Use Ctrl+K to jump around quickly. Tap Work cards to open the blueprint.
+
+      <div style="margin-top:14px; color: rgba(240,244,255,.62); font-size: 12px; line-height:1.5">
+        Tip: Use Ctrl+K to jump. Tap a Work card to open a blueprint.
       </div>
     </div>
   </div>
 
   <div class="palette" id="palette" aria-hidden="true">
+    <div class="paletteBackdrop"></div>
     <div class="paletteBox" role="dialog" aria-modal="true" aria-label="Command Palette">
       <div class="paletteTop">
         <span class="kbd">Ctrl</span><span class="kbd">K</span>
@@ -65,137 +81,78 @@
       <div class="paletteList" id="paletteList"></div>
       <div class="paletteHint">
         <span>↑ ↓ to select · Enter to go · Esc to close</span>
-        <span>Try: “audit”, “scope”, “privacy”, “pricing”</span>
+        <span class="miniNote">Fast, static, lightweight</span>
       </div>
     </div>
   </div>
 
   <div class="modal" id="modal" aria-hidden="true">
-    <div class="modalBox" role="dialog" aria-modal="true" aria-label="Details">
+    <div class="modalBackdrop"></div>
+    <div class="modalPanel" role="dialog" aria-modal="true">
       <div class="modalTop">
-        <b id="modalTitle">Details</b>
-        <button class="x" id="modalClose" aria-label="Close">✕</button>
+        <div class="modalTitle" id="modalTitle">Details</div>
+        <button class="modalClose" id="modalClose" type="button" aria-label="Close">✕</button>
       </div>
       <div class="modalBody" id="modalBody"></div>
     </div>
   </div>
 
-  <div class="cookie" id="cookie" aria-hidden="true">
-    <div class="cookieBox" role="dialog" aria-modal="true" aria-label="Cookie banner">
-      <div class="cookieTop">
-        <b>Cookies & privacy</b>
-        <button class="x" onclick="hideCookie()" aria-label="Close">✕</button>
-      </div>
-      <div class="cookieBody">
-        <p style="margin:0">This site is static and lightweight. We store your theme preference and cookie choice. If analytics are added later, we’ll update this notice.</p>
-        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px">
-          <button class="btn btnPrimary magnetic" id="cookieAccept">Accept all (future)</button>
-          <button class="btn btnGhost magnetic" id="cookieEssential">Essential only</button>
-          <button class="btn btnGhost magnetic" id="cookieManage">Manage</button>
+  <main class="topPad">
+
+<section class="section">
+  <div class="container">
+    <div class="card reveal">
+      <div class="cardInner">
+        <div class="badgeRow">
+          <span class="badge"><span class="dot"></span>Privacy</span>
+          <span class="badge">Static site</span>
+          <span class="badge">Minimal cookies</span>
         </div>
-        <div class="smallNote">See details in <a href="privacy.html" style="text-decoration:underline">Privacy Policy</a>.</div>
+        <h1 style="margin-top:12px">Privacy policy (placeholder)</h1>
+        <p class="lead">
+          You don’t have company legal info yet — so this is a placeholder to avoid looking shady.
+          Replace with your real policy once you form the entity and decide analytics tooling.
+        </p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="panel reveal">
+        <div class="panelInner">
+          <h2>What we collect</h2>
+          <p>
+            This static site stores only your theme preference and cookie choice in local storage.
+            No tracking cookies are set by default.
+          </p>
+          <h2 style="margin-top:14px">Contact</h2>
+          <p>For privacy requests, email <a href="mailto:info@nexoid.dev">info@nexoid.dev</a>.</p>
+          <h2 style="margin-top:14px">Future analytics</h2>
+          <p>
+            If analytics are added later, we will disclose what is collected, why, and how to opt out.
+          </p>
+        </div>
       </div>
     </div>
   </div>
+</section>
 
-  <header class="nav">
-    <div class="wrap">
-      <div class="navInner">
-        <a class="brand" href="index.html" aria-label="Nexxoid home">
+  </main>
+
+  <div class="footer">
+    <div class="container footerGrid">
+      <div style="max-width:520px">
+        <div class="brand">
           <div class="logo" aria-hidden="true"></div>
-          <div><b>Nexxoid</b><small>websites + growth systems</small></div>
-        </a>
-
-        <nav class="menu" aria-label="Primary">
-          <a href="services.html">Services</a>
-          <a href="work.html">Work</a>
-          <a href="pricing.html">Pricing</a>
-          <a href="contact.html">Contact</a>
-          <a href="privacy.html" class="active">Privacy</a>
-        </nav>
-
-        <div class="right">
-          <button class="pill" id="openPalette" title="Open command palette (Ctrl+K)"><span>Command</span><span class="kbd">Ctrl K</span></button>
-          <button class="pill" id="themeToggle" title="Toggle theme"><span>Theme:</span><span id="themeName">Neon</span></button>
-          <button class="hamburger" id="openDrawer" aria-label="Open menu">☰</button>
+          <div class="brandText"><b>Nexxoid</b><small>Worldwide — US + EU</small></div>
         </div>
-      </div>
-    </div>
-  </header>
-<script>
-window.NEXXOID_COMMANDS = [{"id": "audit", "title": "Book a 15\u2011min audit", "hint": "Contact page", "run": "(()=>{location.href='contact.html#book';})"}, {"id": "services", "title": "Go to Services", "hint": "What we offer", "run": "(()=>{location.href='services.html';})"}, {"id": "work", "title": "Go to Work", "hint": "Sample case studies", "run": "(()=>{location.href='work.html';})"}, {"id": "pricing", "title": "Go to Pricing", "hint": "Packages + add-ons", "run": "(()=>{location.href='pricing.html';})"}, {"id": "contact", "title": "Go to Contact", "hint": "Send inquiry / scope draft", "run": "(()=>{location.href='contact.html';})"}, {"id": "privacy", "title": "Go to Privacy", "hint": "Privacy + cookies", "run": "(()=>{location.href='privacy.html';})"}, {"id": "theme", "title": "Toggle theme", "hint": "Neon \u2194 Void", "run": "(()=>{document.getElementById('themeToggle')?.click();})"}].map(c=>({...c, run: eval(c.run)}));
-</script>
-
-<main>
-  <section class="hero">
-    <div class="wrap">
-      <div class="tag reveal"><span class="tagDot" aria-hidden="true"></span><span>Privacy · Cookies · Transparency</span></div>
-      <h1 class="reveal" style="transition-delay:.06s">Privacy Policy (template)</h1>
-      <p class="sub reveal" style="transition-delay:.12s">Replace placeholders when you form a legal entity and add analytics.</p>
-      <div class="ctaRow reveal" style="transition-delay:.18s"><a class="btn btnGhost magnetic" href="contact.html">Contact</a><a class="btn btnGhost magnetic" href="#cookies">Cookie notice</a></div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="kicker reveal">Policy</div>
-      <h2 class="reveal" style="transition-delay:.06s">What we collect</h2>
-      <p class="lead reveal" style="transition-delay:.12s">By default, this site is static. We do not run third‑party analytics or advertising pixels unless you add them.</p>
-
-      <div class="codeblock reveal" style="transition-delay:.14s">SUMMARY (CURRENT)\n- Contact form: opens your email client (mailto). Data is not stored on the site.\n- Local storage: theme preference + cookie choice.\n- Server logs (hosting): standard request logs (IP, user agent) handled by your hosting provider.\n\nIf you add analytics later:\n- Update this policy.\n- Provide a cookie banner and settings.\n- Link to the analytics provider terms.</div>
-
-      <hr class="sep"/>
-
-      <div class="reveal">
-        <h3 style="margin:0; font-size:18px">Controller</h3>
-        <p style="color:var(--muted); line-height:1.7">Nexxoid (TBD legal entity). Contact: <a href="mailto:info@nexoid.dev" style="text-decoration:underline">info@nexoid.dev</a></p>
-
-        <h3 style="margin-top:18px; font-size:18px">Purpose</h3>
-        <p style="color:var(--muted); line-height:1.7">To respond to inquiries and provide requested services.</p>
-
-        <h3 style="margin-top:18px; font-size:18px">Retention</h3>
-        <p style="color:var(--muted); line-height:1.7">If you contact us by email, messages are retained in our email inbox as needed for business communication.</p>
-
-        <h3 style="margin-top:18px; font-size:18px">Your rights (GDPR)</h3>
-        <p style="color:var(--muted); line-height:1.7">If GDPR applies, you may request access, correction, deletion, or restriction of your data. Email us to exercise these rights.</p>
-
-        <h3 style="margin-top:18px; font-size:18px">Updates</h3>
-        <p style="color:var(--muted); line-height:1.7">We may update this policy. The latest version will be published on this page.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="cookies">
-    <div class="wrap">
-      <div class="kicker reveal">Cookies</div>
-      <h2 class="reveal" style="transition-delay:.06s">Cookie Notice</h2>
-      <p class="lead reveal" style="transition-delay:.12s">This site stores only essential preferences unless you add analytics later.</p>
-
-      <div class="cards">
-        <div class="card reveal" data-tilt><div class="cardGlow"></div><div class="badge"><span class="mini">✓</span><span>Essential</span></div><h3>Theme + consent</h3><p>We store theme preference and your cookie choice in local storage.</p></div>
-        <div class="card reveal" data-tilt style="transition-delay:.06s"><div class="cardGlow"></div><div class="badge"><span class="mini">⟡</span><span>Optional</span></div><h3>Analytics (future)</h3><p>If you enable analytics later, update the banner and policy.</p></div>
-        <div class="card reveal" data-tilt style="transition-delay:.12s"><div class="cardGlow"></div><div class="badge"><span class="mini">⚑</span><span>Tip</span></div><h3>Keep it clean</h3><p>Many small businesses don’t need trackers. Speed + clarity often wins first.</p></div>
-      </div>
-    </div>
-  </section>
-</main>
-
-  <footer>
-    <div class="wrap">
-      <div class="footGrid">
-        <div>
-          <div class="brand" style="gap:12px">
-            <div class="logo" aria-hidden="true"></div>
-            <div><b>Nexxoid</b><small>Worldwide — US + EU</small></div>
-          </div>
-          <div class="message">Fast builds. Premium feel. Clear outcomes.</div>
-          <div style="margin-top:10px; color: var(--muted); font-size: 13px; line-height: 1.6; max-width: 70ch">
-            Small, senior team — built for speed. We design and ship conversion-first websites, then optionally add SEO, Google Business optimization, integrations and automation.
-          </div>
-          <div style="margin-top:10px; color: var(--muted2); font-size: 12px">
-            Contact: <a href="mailto:info@nexoid.dev" style="text-decoration:underline">info@nexoid.dev</a>
-          </div>
+        <div style="margin-top:10px; color: rgba(240,244,255,.68); line-height:1.6">
+          Fast builds. Premium feel. Clear outcomes. We design and ship conversion-first websites,
+          then optionally add SEO, Google Business optimization, integrations and automation.
         </div>
+        <div style="margin-top:10px" class="miniNote">Contact: <a href="mailto:info@nexoid.dev">info@nexoid.dev</a></div>
+        <div style="margin-top:8px; color: rgba(240,244,255,.52); font-size: 12px">© 2025 Nexxoid. All rights reserved.</div>
+      </div>
+      <div>
         <div class="footLinks">
           <a href="services.html">Services</a>
           <a href="work.html">Work</a>
@@ -203,14 +160,24 @@ window.NEXXOID_COMMANDS = [{"id": "audit", "title": "Book a 15\u2011min audit", 
           <a href="contact.html">Contact</a>
           <a href="privacy.html">Privacy</a>
         </div>
-      </div>
-      <div style="margin-top:18px; color: var(--muted2); font-size: 12px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap">
-        <span>© 2025 Nexxoid. All rights reserved.</span>
-        <span>Built to feel expensive. Built to load fast.</span>
+        <div style="margin-top:10px" class="miniNote">Built to feel expensive. Built to load fast.</div>
       </div>
     </div>
-  </footer>
-  <script>window.NEXXOID_EMAIL = "info@nexoid.dev";</script>
+  </div>
+
+  <div class="cookie" id="cookie">
+    <div class="cookieInner">
+      <div class="cookieCard">
+        <p><b>Cookies & privacy</b><br/>We store only your theme preference and cookie choice. If analytics are added later, we’ll update this notice.</p>
+        <div class="cookieBtns">
+          <button class="btn primary" id="cookieAccept" type="button">Accept all (future)</button>
+          <button class="btn" id="cookieEssential" type="button">Essential only</button>
+          <button class="btn ghost" id="cookieManage" type="button">Manage</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="assets/app.js" defer></script>
 </body>
 </html>
